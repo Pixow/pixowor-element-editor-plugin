@@ -8,8 +8,13 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "target": "es2015",
     "module": "es2020",
     "lib": [

@@ -1,0 +1,12 @@
+{
+  "pid": "qing-subwindow-test-plugin",
+  "name": "Qing Subwindow Test Plugin",
+  "author": "moJiXiang",
+  "version": "1.0.1",
+  "description": "轻宇宙装扮编辑器",
+  "minAppVersion": "1.0.0",
+  "authorUrl": "https://github.com/moJiXiang",
+  "dependencies": {
+    "qing-dialog": "1.0.0"
+  }
+}
