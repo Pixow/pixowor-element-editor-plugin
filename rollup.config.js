@@ -3,11 +3,11 @@ import json from "@rollup/plugin-json";
 import copy from "rollup-plugin-copy";
 
 export default {
-  input: "plugin.ts",
+  input: "index.ts",
   output: {
     file: "dist/index.js",
     format: "umd",
-    name: "QingSubwindowTestPlugin"
+    name: "PixoworAvatarManagePlugin"
   },
   plugins: [
     json(),

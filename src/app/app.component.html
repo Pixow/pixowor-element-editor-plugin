@@ -1,2 +1,40 @@
-<div class="app">
-</div>
+<ng-container *ngIf="loadLangSuccess">
+  <div class="avatar-manage-container">
+    <div class="avatar-manage__sidebar">
+      <div class="sidebar-content">
+        <avatar-preview></avatar-preview>
+        <p-panelMenu [model]="categories" [style]="{'width':'260px', 'margin-top': '10px'}"></p-panelMenu>
+      </div>
+    </div>
+    <div class="avatar-manage__rightbar">
+      <div class="avatar-manage__rightbar-top">
+        <h3 class="current-page-report">
+          ITEMS {{first + 1}} TO {{first + avatars.length}} OF {{total}} TOTAL
+        </h3>
+
+        <div class="avatar-manage__filters">
+          <div class="avatar-manage__search">
+            <div class="p-inputgroup">
+                <input type='text' name="search" [(ngModel)]="keyword" pInputText placeholder="Search Avatars With Name Or Id">
+                <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-warn" (click)="search()"></button>
+            </div>
+          </div>
+          <div class="avatar-manage__sorts">
+            <span>SORT BY:</span>
+            <p-dropdown [options]="sortOptions" [(ngModel)]="selectedSortOption" optionLabel="name" (onChange)="populate()"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="avatar-list">
+        <div class="avatar-cards">
+          <avatar-card *ngFor="let avatar of avatars" [avatar]="avatar" (onDressup)="dressup($event)"></avatar-card>
+        </div>
+        <p-paginator
+          [rows]="pageSize"
+          [totalRecords]="total"
+          (onPageChange)="loadPage($event)"
+        ></p-paginator>
+      </div>
+    </div>
+  </div>
+</ng-container>

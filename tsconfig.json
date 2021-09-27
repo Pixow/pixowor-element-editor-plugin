@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -13,15 +13,25 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "node_modules/pixowor-core/dist/types/src",
+      "node_modules/pixow-api/dist",
+      "node_modules/@PixelPai/game-core/release/types"
     ],
+    "types": ["node", "jest", "long"],
     "target": "es2015",
     "module": "es2020",
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true,
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"]
+    },
   },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
   }

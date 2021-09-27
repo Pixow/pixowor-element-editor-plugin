@@ -1,0 +1,20 @@
+<div class="avatar-slot-container" #avatarSlot>
+
+  <ng-container *ngIf="selectedFile; else upload">
+    <div class="image-preview">
+      <i class="pi pi-times" (click)="removeSelectedFile()"></i>
+      <img #imagePreview>
+    </div>
+  </ng-container>
+  <ng-template #upload>
+      <p-fileUpload
+        mode="basic"
+        name="myfile[]"
+        accept="image/*"
+        maxFileSize="1000000"
+        chooseLabel='{{slotConfig.name}}'
+        (onSelect)="selectFile($event)"
+        >
+      </p-fileUpload>
+  </ng-template>
+</div>

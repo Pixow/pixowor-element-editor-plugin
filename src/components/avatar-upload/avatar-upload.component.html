@@ -1,0 +1,24 @@
+<div class="avatar-upload">
+  <div class="avatar-upload__sidebar">
+     <!-- <h1>{{avatar.name}}</h1> -->
+     <avatar-preview
+      (onTurnAround)="turnAroundAvatarSlots()"
+     ></avatar-preview>
+  </div>
+  <div class="avatar-upload__rightbar">
+    <ng-container *ngIf="front; else contentBack" >
+      <div class="avatar-upload__content content-front">
+        <ng-container *ngFor="let config of frontSlotConfigs">
+            <avatar-slot [slotConfig]="config"></avatar-slot>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #contentBack>
+      <div class="avatar-upload__content content-back">
+        <ng-container *ngFor="let config of backSlotConfigs">
+            <avatar-slot [slotConfig]="config"></avatar-slot>
+        </ng-container>
+      </div>
+    </ng-template>
+  </div>
+</div>
