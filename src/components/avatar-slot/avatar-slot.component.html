@@ -1,9 +1,9 @@
 <div class="avatar-slot-container" #avatarSlot>
 
-  <ng-container *ngIf="selectedFile; else upload">
+  <ng-container *ngIf="imageBlob; else upload">
     <div class="image-preview">
       <i class="pi pi-times" (click)="removeSelectedFile()"></i>
-      <img #imagePreview>
+      <img #slotPreview>
     </div>
   </ng-container>
   <ng-template #upload>

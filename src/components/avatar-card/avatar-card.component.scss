@@ -78,30 +78,9 @@
     margin-top: 10px;
     justify-content: space-between;
 
-    button {
+    button.avatar-card-btn {
       width: 76px;
       height: 30px;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      font-family: "Montserrat",sans-serif;
-      font-size: 0.875em;
-      letter-spacing: 0.08em;
-      line-height: 28px;
-      text-transform: uppercase;
-      font-weight: 700;
-      background-color: #00b0ff;
-      border-radius: 4px;
-      border-bottom: 3px solid #0091ea;
-      text-align: center;
-      position: relative;
-      -webkit-transition: background-color 0.3s ease;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #2abdff;
-      }
     }
   }
 }

@@ -10,7 +10,9 @@ import { HumanoidSlot } from '@PixelPai/game-core/release/types/src/structure/dr
 import { MessageChannel as msgc } from 'electron-re';
 import { PixoworCore } from 'pixowor-core';
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { AvatarPreviewComponent } from 'src/components/avatar-preview/avatar-preview.component';
+import { AvatarUploadComponent } from 'src/components/avatar-upload/avatar-upload.component';
 import { AppService } from './app.service';
 
 interface SortOption {
@@ -22,6 +24,7 @@ interface SortOption {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [DialogService]
 })
 export class AppComponent implements OnInit {
   loadLangSuccess = false;
@@ -47,6 +50,7 @@ export class AppComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private appService: AppService,
+    private dialog: DialogService,
     @Inject(PixoworCore) private pixoworCore: PixoworCore
   ) {
     const { lang } = this.pixoworCore.settings;
@@ -172,5 +176,17 @@ export class AppComponent implements OnInit {
       slots
     );
     this.avatarPreview.dressup(slots);
+  }
+
+  public createAvatar(): void {
+    const newAvatar = null;
+
+    this.dialog.open(AvatarUploadComponent, {
+      header: 'Create Avatar',
+      width: '70%',
+      data: {
+        avatar: newAvatar
+      }
+    });
   }
 }

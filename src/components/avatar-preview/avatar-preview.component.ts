@@ -13,11 +13,13 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import {
   AvatarEditorCanvas,
+  AvatarEditorEmitType,
   EditorCanvasManager,
   EditorCanvasType,
   HumanoidSlot,
 } from '@PixelPai/game-core';
 import { PixoworCore } from 'pixowor-core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'avatar-preview',
@@ -37,6 +39,8 @@ export class AvatarPreviewComponent
   flipX = false;
 
   canvas: AvatarEditorCanvas;
+
+  ready$ = new BehaviorSubject(false);
 
   constructor(
     @Inject(PixoworCore) private pixoworCore: PixoworCore,
@@ -136,6 +140,10 @@ export class AvatarPreviewComponent
       parent: id,
       osdPath: WEB_RESOURCE_URI + '/',
     }) as AvatarEditorCanvas;
+
+    this.canvas.on(AvatarEditorEmitType.CanvasCreated, () => {
+       this.ready$.next(true);
+     });
   }
 
   public dressup(slots: HumanoidSlot[]): void {
@@ -170,5 +178,8 @@ export class AvatarPreviewComponent
     if (this.canvas) {
       this.canvas.destroy();
     }
+
+    this.ready$.next(false);
+    this.ready$.complete();
   }
 }
