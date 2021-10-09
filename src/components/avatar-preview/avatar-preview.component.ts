@@ -139,16 +139,26 @@ export class AvatarPreviewComponent
       height: element.clientHeight,
       parent: id,
       osdPath: WEB_RESOURCE_URI + '/',
+      backgroundColor: '#f0f8ff',
+      // defaultSN: '',// 默认装扮sn
+      // defaultVersion: '', // 默认装扮version
+      // thumbnailWidth: 100// 缩略图宽
+      // thumbnailHeight: 100,// 缩略图高
+      // thumbnailBottomArea: 20// 缩略图下方留空
     }) as AvatarEditorCanvas;
 
     this.canvas.on(AvatarEditorEmitType.CanvasCreated, () => {
-       this.ready$.next(true);
-     });
+      this.ready$.next(true);
+    });
   }
 
   public dressup(slots: HumanoidSlot[]): void {
     console.log('dressup canvas: ', this.canvas);
     this.canvas.mergeSlots(slots);
+  }
+
+  public takeoff(slotNames: string[]) {
+    this.canvas.cancelSlots(slotNames);
   }
 
   public changeAnimation(event): void {

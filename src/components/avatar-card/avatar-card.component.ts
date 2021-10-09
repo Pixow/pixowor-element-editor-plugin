@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { HumanoidSlot } from '@PixelPai/game-core';
+import { HumanoidDescriptionNode } from 'game-capsule';
+import { PixoworCore } from 'pixowor-core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AvatarCard } from 'src/app/app.service';
-import { AvatarUploadComponent } from '../avatar-upload/avatar-upload.component';
+import { HumanoidAssetsUploadComponent } from '../humanoid-assets-upload/humanoid-assets-upload.component';
+const urlResolve = require('url-resolve-browser');
 
 @Component({
   selector: 'avatar-card',
@@ -15,7 +18,10 @@ export class AvatarCardComponent {
 
   @Output() onDressup = new EventEmitter();
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    @Inject(PixoworCore) private pixoworCore: PixoworCore,
+    public dialogService: DialogService
+  ) {}
 
   // avatar = {
   //   cover:
@@ -37,9 +43,10 @@ export class AvatarCardComponent {
   // };
 
   tryDressup(): void {
-    const slots: HumanoidSlot[] = this.avatar.parts.map((part) => {
+    const slots = this.avatar.parts.map((part) => {
       return {
         slot: part,
+        version: this.avatar.version,
         sn: this.avatar._id,
       };
     });
@@ -47,13 +54,28 @@ export class AvatarCardComponent {
     this.onDressup.emit(slots);
   }
 
-  editAvatar(): void {
-    const ref = this.dialogService.open(AvatarUploadComponent, {
-      header: 'Edit Avatar',
-      width: '70%',
-      data: {
-        avatar: this.avatar
-      }
-    });
+  editHumanoid(): void {
+    const humanoidFileUrl = urlResolve(
+      this.pixoworCore.settings.WEB_RESOURCE_URI,
+      `avatar/${this.avatar._id}/${this.avatar.version}/${this.avatar._id}.humanoid`
+    );
+
+    fetch(humanoidFileUrl)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const message = HumanoidDescriptionNode.decode(new Uint8Array(buffer));
+        const humanoidDescNode = new HumanoidDescriptionNode();
+        humanoidDescNode.deserialize(message);
+
+        console.log('humanoidDescNode: ', humanoidDescNode);
+
+        const ref = this.dialogService.open(HumanoidAssetsUploadComponent, {
+          header: 'Edit Humanoid',
+          width: '70%',
+          data: {
+            humanoidDescNode,
+          },
+        });
+      });
   }
 }

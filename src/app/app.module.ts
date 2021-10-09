@@ -14,6 +14,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
@@ -22,9 +24,11 @@ import { DateAgoPipe } from 'src/pipes/date-ago.pipe';
 import { AvatarPreviewComponent } from 'src/components/avatar-preview/avatar-preview.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { AvatarUploadComponent } from 'src/components/avatar-upload/avatar-upload.component';
-import { AvatarSlotComponent } from 'src/components/avatar-slot/avatar-slot.component';
+import { HumanoidAssetsUploadComponent } from 'src/components/humanoid-assets-upload/humanoid-assets-upload.component';
+import { HumanoidSlotComponent } from 'src/components/humanoid-slot/humanoid-slot.component';
 import { CommonModule } from '@angular/common';
+import { TooltipComponent } from 'src/components/tooltip/tooltip.component';
+import { HumanoidThumbnailComponent } from 'src/components/humanoid-thumbnail/humanoid-thumbnail.component';
 
 function initPixoworCore(): PixoworCore {
   storage.setDataPath(path.join(remote.app.getPath('userData'), 'runtime'));
@@ -42,8 +46,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AvatarCardComponent,
     DateAgoPipe,
     AvatarPreviewComponent,
-    AvatarUploadComponent,
-    AvatarSlotComponent,
+    HumanoidAssetsUploadComponent,
+    HumanoidSlotComponent,
+    TooltipComponent,
+    HumanoidThumbnailComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +62,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DynamicDialogModule,
     FileUploadModule,
     PanelMenuModule,
+    InputTextModule,
+    ToastModule,
     TranslateModule.forRoot({
       useDefaultLang: true,
       loader: {

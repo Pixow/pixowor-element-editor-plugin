@@ -60,6 +60,7 @@
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
     "no-var-requires": false,
+    "no-string-literal": false,
     "object-literal-key-quotes": [
       true,
       "as-needed"
@@ -83,7 +84,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {
@@ -107,7 +108,6 @@
     "variable-name": {
       "options": [
         "ban-keywords",
-        "check-format",
         "allow-pascal-case"
       ]
     },
@@ -125,7 +125,7 @@
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "no-conflicting-lifecycle": true,
-    "no-host-metadata-property": true,
+    "no-host-metadata-property": false,
     "no-input-rename": true,
     "no-inputs-metadata-property": true,
     "no-output-native": true,
@@ -137,7 +137,7 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "directive-selector": [
-      true,
+      false,
       "attribute",
       "app",
       "camelCase"

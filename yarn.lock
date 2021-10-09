@@ -5946,9 +5946,9 @@ image-to-blob@^0.2.0:
   dependencies:
     image-to-data-uri jcblw/image-to-data-uri.js
 
-"image-to-data-uri@git+https://github.com/jcblw/image-to-data-uri.js":
+image-to-data-uri@jcblw/image-to-data-uri.js:
   version "0.0.1"
-  resolved "git+https://github.com/jcblw/image-to-data-uri.js#bcd2218a4fe1531080fd2fdb81e96b0c7d8909a6"
+  resolved "https://codeload.github.com/jcblw/image-to-data-uri.js/tar.gz/bcd2218a4fe1531080fd2fdb81e96b0c7d8909a6"
 
 immediate@~3.0.5:
   version "3.0.6"

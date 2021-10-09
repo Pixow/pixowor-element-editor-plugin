@@ -50,4 +50,8 @@ export class AppService {
       this.avatars$.next(avatarCards);
     });
   }
+
+  public getQiniuToken(name: string): Promise<string> {
+    return this.pixoworCore.pixowApi.util.getQiniuToken({ name });
+  }
 }

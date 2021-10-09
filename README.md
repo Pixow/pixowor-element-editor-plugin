@@ -8,3 +8,7 @@ node ./hot-dev.js
 ```
 
 打开窗口和控制台，在控制台刷新
+
+### TODO
+
+[ ] 使用HumanoidNode创建新的avatar文件和数据

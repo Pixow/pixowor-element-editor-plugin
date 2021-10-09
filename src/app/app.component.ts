@@ -12,7 +12,8 @@ import { PixoworCore } from 'pixowor-core';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AvatarPreviewComponent } from 'src/components/avatar-preview/avatar-preview.component';
-import { AvatarUploadComponent } from 'src/components/avatar-upload/avatar-upload.component';
+import { HumanoidAssetsUploadComponent } from 'src/components/humanoid-assets-upload/humanoid-assets-upload.component';
+import { HumanoidDescriptionNode } from 'game-capsule';
 import { AppService } from './app.service';
 
 interface SortOption {
@@ -179,14 +180,15 @@ export class AppComponent implements OnInit {
   }
 
   public createAvatar(): void {
-    const newAvatar = null;
 
-    this.dialog.open(AvatarUploadComponent, {
+    const humanoidDescNode = new HumanoidDescriptionNode();
+
+    this.dialog.open(HumanoidAssetsUploadComponent, {
       header: 'Create Avatar',
       width: '70%',
       data: {
-        avatar: newAvatar
-      }
+        humanoidDescNode,
+      },
     });
   }
 }
