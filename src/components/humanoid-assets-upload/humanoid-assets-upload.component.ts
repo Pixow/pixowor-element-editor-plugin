@@ -25,9 +25,10 @@ const imageToBlob = require('image-to-blob');
 const urlResolve = require('url-resolve-browser');
 
 export interface SlotConfig {
-  front: boolean;
-  slotName: string;
+  isFront: boolean;
   name: string;
+  slotName: string;
+  sn: string;
   version: string;
   limitImageWidth: number;
   limitImageHeight: number;
@@ -36,6 +37,7 @@ export interface SlotConfig {
   imageBlob?: Blob;
   emptyOverride?: boolean;
   removeBase?: boolean;
+  isBase?: boolean;
 }
 
 export enum AvatarDir {
@@ -45,8 +47,9 @@ export enum AvatarDir {
 
 const SlotConfigs: SlotConfig[] = [
   {
-    front: true,
+    isFront: true,
     slotName: 'head_face_3',
+    sn: 'LOCALSN',
     name: 'Face',
     version: '0',
     limitImageWidth: 85,
@@ -56,8 +59,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'head_base_3',
+    sn: 'LOCALSN',
     name: 'Base',
     version: '0',
     limitImageWidth: 85,
@@ -67,8 +71,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'head_mask_3',
+    sn: 'LOCALSN',
     name: 'Mask',
     version: '0',
     limitImageWidth: 85,
@@ -78,8 +83,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'barm_cost_3',
+    sn: 'LOCALSN',
     name: 'Right Arm',
     version: '0',
     limitImageWidth: 21,
@@ -90,9 +96,24 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: true,
+    isFront: true,
+    slotName: 'barm_base_3',
+    sn: 'LOCALSN',
+    name: 'Right Arm Base',
+    version: '0',
+    limitImageWidth: 21,
+    limitImageHeight: 26,
+    top: 260,
+    left: 136,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true
+  },
+  {
+    isFront: true,
     slotName: 'body_cost_3',
-    name: 'Body',
+    sn: 'LOCALSN',
+    name: 'Body Cost',
     version: '0',
     limitImageWidth: 44,
     limitImageHeight: 36,
@@ -102,8 +123,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: true,
+    isFront: true,
+    slotName: 'body_base_3',
+    sn: 'LOCALSN',
+    name: 'Body Base',
+    version: '0',
+    limitImageWidth: 44,
+    limitImageHeight: 36,
+    top: 67,
+    left: 254,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: true,
     slotName: 'body_cost_dres_3',
+    sn: 'LOCALSN',
     name: 'Dress',
     version: '0',
     limitImageWidth: 44,
@@ -113,8 +149,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'farm_cost_3',
+    sn: 'LOCALSN',
     name: 'Left Arm',
     version: '0',
     limitImageWidth: 21,
@@ -125,8 +162,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: true,
+    isFront: true,
+    slotName: 'farm_base_3',
+    sn: 'LOCALSN',
+    name: 'Left Arm Base',
+    version: '0',
+    limitImageWidth: 21,
+    limitImageHeight: 26,
+    top: 260,
+    left: 377,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: true,
     slotName: 'barm_weap_3',
+    sn: 'LOCALSN',
     name: 'Right Arm Weapon',
     version: '0',
     limitImageWidth: 21,
@@ -136,8 +188,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'barm_shld_3',
+    sn: 'LOCALSN',
     name: 'Right Arm Handheld',
     version: '0',
     limitImageWidth: 21,
@@ -147,8 +200,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'farm_weap_3',
+    sn: 'LOCALSN',
     name: 'Left Arm Weapon',
     version: '0',
     limitImageWidth: 21,
@@ -158,8 +212,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'farm_shld_3',
+    sn: 'LOCALSN',
     name: 'Left Arm Handheld',
     version: '0',
     limitImageWidth: 21,
@@ -169,8 +224,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: true,
+    isFront: true,
     slotName: 'bleg_cost_3',
+    sn: 'LOCALSN',
     name: 'Right Leg',
     version: '0',
     limitImageWidth: 17,
@@ -181,8 +237,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: true,
+    isFront: true,
+    slotName: 'bleg_base_3',
+    sn: 'LOCALSN',
+    name: 'Right Leg Base',
+    version: '0',
+    limitImageWidth: 17,
+    limitImageHeight: 25,
+    top: 450,
+    left: 76,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: true,
     slotName: 'fleg_cost_3',
+    sn: 'LOCALSN',
     name: 'Left Leg',
     version: '0',
     limitImageWidth: 17,
@@ -193,9 +264,24 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: false,
+    isFront: true,
+    slotName: 'fleg_base_3',
+    sn: 'LOCALSN',
+    name: 'Left Leg Base',
+    version: '0',
+    limitImageWidth: 17,
+    limitImageHeight: 25,
+    top: 450,
+    left: 431,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: false,
     slotName: 'head_base_1',
-    name: 'Base',
+    sn: 'LOCALSN',
+    name: 'Head Base',
     version: '0',
     limitImageWidth: 85,
     limitImageHeight: 93,
@@ -204,9 +290,10 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'head_mask_1',
-    name: 'Mask',
+    sn: 'LOCALSN',
+    name: 'Head Mask',
     version: '0',
     limitImageWidth: 85,
     limitImageHeight: 93,
@@ -215,8 +302,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'farm_cost_1',
+    sn: 'LOCALSN',
     name: 'Left Arm',
     version: '0',
     limitImageWidth: 21,
@@ -227,9 +315,24 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: false,
+    isFront: false,
+    slotName: 'farm_base_1',
+    sn: 'LOCALSN',
+    name: 'Left Arm Base',
+    version: '0',
+    limitImageWidth: 21,
+    limitImageHeight: 26,
+    top: 260,
+    left: 136,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: false,
     slotName: 'body_cost_1',
-    name: 'Body',
+    sn: 'LOCALSN',
+    name: 'Body Cost',
     version: '0',
     limitImageWidth: 44,
     limitImageHeight: 36,
@@ -239,8 +342,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: false,
+    isFront: false,
+    slotName: 'body_base_1',
+    sn: 'LOCALSN',
+    name: 'Body Base',
+    version: '0',
+    limitImageWidth: 44,
+    limitImageHeight: 36,
+    top: 67,
+    left: 254,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: false,
     slotName: 'body_cost_dres_1',
+    sn: 'LOCALSN',
     name: 'Dress',
     version: '0',
     limitImageWidth: 44,
@@ -250,8 +368,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'barm_cost_1',
+    sn: 'LOCALSN',
     name: 'Right Arm',
     version: '0',
     limitImageWidth: 21,
@@ -262,8 +381,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: false,
+    isFront: false,
+    slotName: 'barm_base_1',
+    sn: 'LOCALSN',
+    name: 'Right Arm Base',
+    version: '0',
+    limitImageWidth: 21,
+    limitImageHeight: 26,
+    top: 260,
+    left: 377,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: false,
     slotName: 'farm_weap_1',
+    sn: 'LOCALSN',
     name: 'Left Arm Weap',
     version: '0',
     limitImageWidth: 21,
@@ -273,8 +407,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'farm_shld_1',
+    sn: 'LOCALSN',
     name: 'Left Arm Handheld',
     version: '0',
     limitImageWidth: 21,
@@ -284,8 +419,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'barm_weap_1',
+    sn: 'LOCALSN',
     name: 'Right Arm Weap',
     version: '0',
     limitImageWidth: 21,
@@ -295,8 +431,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'barm_shld_1',
+    sn: 'LOCALSN',
     name: 'Right Arm Handheld',
     version: '0',
     limitImageWidth: 21,
@@ -306,8 +443,9 @@ const SlotConfigs: SlotConfig[] = [
     emptyOverride: undefined,
   },
   {
-    front: false,
+    isFront: false,
     slotName: 'fleg_cost_1',
+    sn: 'LOCALSN',
     name: 'Left Leg',
     version: '0',
     limitImageWidth: 17,
@@ -318,8 +456,23 @@ const SlotConfigs: SlotConfig[] = [
     removeBase: undefined,
   },
   {
-    front: false,
+    isFront: false,
+    slotName: 'fleg_base_1',
+    sn: 'LOCALSN',
+    name: 'Left Leg Base',
+    version: '0',
+    limitImageWidth: 17,
+    limitImageHeight: 25,
+    top: 450,
+    left: 76,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
+  },
+  {
+    isFront: false,
     slotName: 'bleg_cost_1',
+    sn: 'LOCALSN',
     name: 'Right Leg',
     version: '0',
     limitImageWidth: 17,
@@ -328,6 +481,20 @@ const SlotConfigs: SlotConfig[] = [
     left: 321,
     emptyOverride: undefined,
     removeBase: undefined,
+  },
+  {
+    isFront: false,
+    slotName: 'bleg_base_1',
+    sn: 'LOCALSN',
+    name: 'Right Leg Base',
+    version: '0',
+    limitImageWidth: 17,
+    limitImageHeight: 25,
+    top: 450,
+    left: 431,
+    emptyOverride: undefined,
+    removeBase: undefined,
+    isBase: true,
   },
 ];
 
@@ -353,12 +520,14 @@ export class HumanoidAssetsUploadComponent
 
   thumbnailUploadFileConfig: UploadFileConfig;
 
+  nextVersion: number;
+
   public get frontSlotConfigs(): SlotConfig[] {
-    return this.slotConfigs.filter((config) => config.front);
+    return this.slotConfigs.filter((config) => config.isFront);
   }
 
   public get backSlotConfigs(): SlotConfig[] {
-    return this.slotConfigs.filter((config) => !config.front);
+    return this.slotConfigs.filter((config) => !config.isFront);
   }
 
   constructor(
@@ -371,26 +540,26 @@ export class HumanoidAssetsUploadComponent
     this.humanoidDescNode = humanoidDescNode;
   }
 
-  private mergeHumanoidDescNodeSlotsWithSlotConfigs(
-    slotConfigs: SlotConfig[]
-  ): SlotConfig[] {
-    for (const config of slotConfigs) {
+  private generateSlotConfigsWithHumanoidDescSlots(): SlotConfig[] {
+    const newSlotConfigs = JSON.parse(JSON.stringify(SlotConfigs));
+    for (const config of newSlotConfigs) {
       const slot = this.humanoidDescNode.slots.find(
         (item) => item.slot === config.slotName
       );
       if (slot) {
         config.version = slot.version;
+        config.sn = slot.sn;
+        config.emptyOverride = slot.emptyOverride;
+        config.removeBase = slot.removeBase;
       }
     }
 
-    return slotConfigs;
+    return newSlotConfigs;
   }
 
   async ngOnInit() {
     this.loadThumbnail();
     await this.initSlotConfigs();
-
-    this.cd.markForCheck();
   }
 
   ngAfterViewInit(): void {
@@ -428,19 +597,26 @@ export class HumanoidAssetsUploadComponent
     });
   }
 
+  private getSlotAssetKey(sn: string, version: string, slotName: string) {
+    return `avatar/${sn}/${version}/${slotName}.png`;
+  }
+
   private initSlotConfigs(): Promise<any> {
-    // Merge humanoidDescNode slots with slotConfigs
-    this.slotConfigs =
-      this.mergeHumanoidDescNodeSlotsWithSlotConfigs(SlotConfigs);
+    // Generate slotConfigs with humanoidDescNode slots
+    const slotConfigs = this.generateSlotConfigsWithHumanoidDescSlots();
 
     const tasks: Promise<any>[] = [];
 
     for (const slot of this.humanoidDescNode.slots) {
-      const slotConfig = this.slotConfigs.find(
+      const slotConfig = slotConfigs.find(
         (config) => config.slotName === slot.slot
       );
 
-      const slotAssetKey = `avatar/${this.humanoidDescNode.sn}/${slotConfig.version}/${slotConfig.slotName}.png`;
+      const slotAssetKey = this.getSlotAssetKey(
+        slot.sn,
+        slot.version,
+        slot.slot
+      );
 
       const slotAssetUrl = urlResolve(
         this.pixoworCore.settings.WEB_RESOURCE_URI,
@@ -450,7 +626,9 @@ export class HumanoidAssetsUploadComponent
       tasks.push(this.loadSlotAsset(slotAssetUrl, slotConfig));
     }
 
-    return Promise.all(tasks);
+    return Promise.all(tasks).then(() => {
+      this.slotConfigs = slotConfigs;
+    });
   }
 
   private loadSlotAsset(url: string, config: SlotConfig): Promise<SlotConfig> {
@@ -499,14 +677,6 @@ export class HumanoidAssetsUploadComponent
     this.avatarPreview.dressup(slots);
   }
 
-  private blobToBase64(blob) {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  }
-
   public handleSlotAssetSelect(event): void {
     const { slotName, imageBlob } = event;
 
@@ -519,7 +689,7 @@ export class HumanoidAssetsUploadComponent
     this.blobToBase64(imageBlob).then((imgData) => {
       const humanoidSlot: HumanoidSlot = {
         slot: slotConfig.slotName,
-        version: (+slotConfig.version + 1).toString(),
+        version: slotConfig.version,
         sn: this.humanoidDescNode.sn,
         imgDataBase64: imgData as string,
       };
@@ -591,20 +761,24 @@ export class HumanoidAssetsUploadComponent
 
   private saveToDB(): Promise<HumanoidDescriptionNode> {
     if (this.humanoidDescNode.sn) {
-      const nextVersion = +this.humanoidDescNode.version + 1;
+      this.nextVersion = +this.humanoidDescNode.version + 1;
       return new Promise((resolve, reject) => {
         this.pixoworCore.pixowApi.avatar
           .updateAvatar(this.humanoidDescNode.sn, {
             name: this.humanoidDescNode.name,
-            version: nextVersion,
+            version: this.nextVersion,
           })
           .then((res) => {
-            this.humanoidDescNode.version = nextVersion.toString();
+            this.humanoidDescNode.version = this.nextVersion.toString();
             this.humanoidDescNode.slots.forEach((slot) => {
-              slot.version = this.humanoidDescNode.version;
+              slot.version = this.nextVersion.toString();
+
+              // Sync slotConfig version data
+              const slotConfig = this.slotConfigs.find(
+                (config) => config.slotName === slot.slot
+              );
+              slotConfig.version = this.nextVersion.toString();
             });
-            // Version manage
-            this.mergeHumanoidDescNodeSlotsWithSlotConfigs(this.slotConfigs);
 
             resolve(this.humanoidDescNode);
           })
@@ -624,9 +798,14 @@ export class HumanoidAssetsUploadComponent
             this.humanoidDescNode.slots.forEach((slot) => {
               slot.sn = res.data._id;
               slot.version = '1';
+
+              // Sync slotConfig version data
+              const slotConfig = this.slotConfigs.find(
+                (config) => config.slotName === slot.slot
+              );
+              slotConfig.sn = res.data._id;
+              slotConfig.version = '1';
             });
-            // Version manage
-            this.mergeHumanoidDescNodeSlotsWithSlotConfigs(this.slotConfigs);
 
             resolve(this.humanoidDescNode);
           })
@@ -656,7 +835,7 @@ export class HumanoidAssetsUploadComponent
     const uploadFileConfigs: UploadFileConfig[] = this.slotConfigs
       .filter((config) => config.imageBlob)
       .map((config) => {
-        const key = `avatar/${this.humanoidDescNode.sn}/${config.version}/${config.slotName}.png`;
+        const key = `avatar/${config.sn}/${config.version}/${config.slotName}.png`;
         const file = new File([config.imageBlob], key);
 
         return {
@@ -704,6 +883,14 @@ export class HumanoidAssetsUploadComponent
       byteArrays[sliceIndex] = new Uint8Array(bytes);
     }
     return new Blob(byteArrays, { type: contentType });
+  }
+
+  private blobToBase64(blob) {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
   }
 
   public closeTooltip(): void {

@@ -9,6 +9,7 @@
     input {
       width: 100%;
       height: 30px;
+      margin-bottom: 10px;
     }
 
     avatar-preview {
@@ -23,19 +24,16 @@
   }
 
   &__rightbar {
+    position: relative;
     width: 600px;
 
-    .tooltip-content {
-      p {
-        margin-top: 10px;
-        line-height: 20px;
-        font-family: fantasy;
-
-        i {
-          width: 16px;
-          height: 16px;
-        }
-      }
+    .pi-question-circle {
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 10;
     }
 
     .humanoid-assets-upload__content {
@@ -43,6 +41,18 @@
       width: 100%;
       height: 600px;
       background: url("../../assets/body.png") no-repeat center;
+    }
+  }
+}
+
+.tooltip-content {
+  p {
+    margin-top: 10px;
+    line-height: 20px;
+
+    i {
+      width: 16px;
+      height: 16px;
     }
   }
 }

@@ -32,6 +32,7 @@
     "game-capsule": "git+ssh://git@code.apowo.com:PixelPai/game-capsule.git#dev",
     "image-to-blob": "^0.2.0",
     "long": "4.0.0",
+    "ngx-tippy-wrapper": "^3.0.1",
     "pixow-api": "git+ssh://git@github.com:Pixow/pixow-api.git#develop",
     "pixowor-core": "git+ssh://git@github.com:Pixow/pixowor-core.git#develop",
     "primeflex": "^1.0.0",

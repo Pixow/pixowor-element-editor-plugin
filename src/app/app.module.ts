@@ -17,6 +17,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 
+
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { AvatarCardComponent } from 'src/components/avatar-card/avatar-card.component';
@@ -27,8 +28,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HumanoidAssetsUploadComponent } from 'src/components/humanoid-assets-upload/humanoid-assets-upload.component';
 import { HumanoidSlotComponent } from 'src/components/humanoid-slot/humanoid-slot.component';
 import { CommonModule } from '@angular/common';
-import { TooltipComponent } from 'src/components/tooltip/tooltip.component';
 import { HumanoidThumbnailComponent } from 'src/components/humanoid-thumbnail/humanoid-thumbnail.component';
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 function initPixoworCore(): PixoworCore {
   storage.setDataPath(path.join(remote.app.getPath('userData'), 'runtime'));
@@ -48,8 +49,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AvatarPreviewComponent,
     HumanoidAssetsUploadComponent,
     HumanoidSlotComponent,
-    TooltipComponent,
-    HumanoidThumbnailComponent
+    HumanoidThumbnailComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
       isolate: false,
     }),
+    NgxTippyModule
   ],
   providers: [
     AppService,

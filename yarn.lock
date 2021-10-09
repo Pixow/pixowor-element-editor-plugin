@@ -1574,6 +1574,11 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
+"@popperjs/core@^2.9.0":
+  version "2.10.2"
+  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.10.2.tgz?cache=0&sync_timestamp=1633001441229&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40popperjs%2Fcore%2Fdownload%2F%40popperjs%2Fcore-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
+  integrity sha1-B5jAM1Hw3qGlpMq93yalWny+5ZA=
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.nlark.com/@protobufjs/aspromise/download/@protobufjs/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -7637,6 +7642,14 @@ next-tick@~1.0.0:
   resolved "https://registry.nlark.com/next-tick/download/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+ngx-tippy-wrapper@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmmirror.com/ngx-tippy-wrapper/download/ngx-tippy-wrapper-3.0.1.tgz#68b53d96975d0299c8e732870801e3a9646d600b"
+  integrity sha1-aLU9lpddApnI5zKHCAHjqWRtYAs=
+  dependencies:
+    tippy.js "^6.3.1"
+    tslib "^2.1.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.nlark.com/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -11085,6 +11098,13 @@ timsort@^0.3.0:
   resolved "https://registry.nlark.com/timsort/download/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
+tippy.js@^6.3.1:
+  version "6.3.2"
+  resolved "https://registry.npmmirror.com/tippy.js/download/tippy.js-6.3.2.tgz#c03a0b88f170dffeba42f569771801dddc1f6340"
+  integrity sha1-wDoLiPFw3/66QvVpdxgB3dwfY0A=
+  dependencies:
+    "@popperjs/core" "^2.9.0"
+
 tmp@0.0.30:
   version "0.0.30"
   resolved "https://registry.npm.taobao.org/tmp/download/tmp-0.0.30.tgz?cache=0&sync_timestamp=1615984440866&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftmp%2Fdownload%2Ftmp-0.0.30.tgz#72419d4a8be7d6ce75148fd8b324e593a711c2ed"
@@ -11261,7 +11281,7 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.nlark.com/tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1628722556410&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
 
-tslib@^2.0.0, tslib@^2.0.3, tslib@^2.2.0:
+tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.2.0:
   version "2.3.1"
   resolved "https://registry.nlark.com/tslib/download/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=

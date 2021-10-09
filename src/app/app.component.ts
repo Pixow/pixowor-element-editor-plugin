@@ -184,7 +184,7 @@ export class AppComponent implements OnInit {
     const humanoidDescNode = new HumanoidDescriptionNode();
 
     this.dialog.open(HumanoidAssetsUploadComponent, {
-      header: 'Create Avatar',
+      header: 'Create Humanoid Description',
       width: '70%',
       data: {
         humanoidDescNode,

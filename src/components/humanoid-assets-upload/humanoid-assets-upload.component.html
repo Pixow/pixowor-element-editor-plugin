@@ -21,7 +21,8 @@
     </ng-container>
   </div>
   <div class="humanoid-assets-upload__rightbar">
-    <!-- <tooltip #myTooltip>
+    <i class="pi pi-question-circle" [ngxTippy]="myTooltip" tippyName="content" [tippyProps]="{ trigger: 'click', placement: 'top' }"></i>
+    <div #myTooltip>
       <div class="tooltip-content">
         <p>
           By checking the [<i class="pi pi-broom"></i>/ set empty] icon on a
@@ -35,36 +36,34 @@
           texture, then put on this costume
         </p>
       </div>
-      <div class="tooltip-actions">
-        <button (click)="closeTooltip()">Got it</button>
-      </div>
-    </tooltip> -->
-    <!-- <button [tooltipTriggerFor]="myTooltip">Show</button> -->
-    <ng-container *ngIf="isFront; else contentBack">
-      <div class="humanoid-assets-upload__content content-front">
-        <ng-container *ngFor="let config of frontSlotConfigs">
-          <humanoid-slot
-            [slotConfig]="config"
-            (onAssetSelect)="handleSlotAssetSelect($event)"
-            (onRemove)="handleSlotTakeoff($event)"
-            (onEmptyOverride)="handleEmptyOverride($event)"
-            (onRemoveBase)="handleRemoveBase($event)"
-          ></humanoid-slot>
-        </ng-container>
-      </div>
+    </div>
+    <ng-container *ngIf="slotConfigs">
+      <ng-container *ngIf="isFront; else backSlots">
+        <div class="humanoid-assets-upload__content content-front">
+          <ng-container *ngFor="let config of frontSlotConfigs">
+            <humanoid-slot
+              [slotConfig]="config"
+              (onAssetSelect)="handleSlotAssetSelect($event)"
+              (onRemove)="handleSlotTakeoff($event)"
+              (onEmptyOverride)="handleEmptyOverride($event)"
+              (onRemoveBase)="handleRemoveBase($event)"
+            ></humanoid-slot>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-template #backSlots>
+        <div class="humanoid-assets-upload__content content-back">
+          <ng-container *ngFor="let config of backSlotConfigs">
+            <humanoid-slot
+              [slotConfig]="config"
+              (onAssetSelect)="handleSlotAssetSelect($event)"
+              (onRemove)="handleSlotTakeoff($event)"
+              (onEmptyOverride)="handleEmptyOverride($event)"
+              (onRemoveBase)="handleRemoveBase($event)"
+            ></humanoid-slot>
+          </ng-container>
+        </div>
+      </ng-template>
     </ng-container>
-    <ng-template #contentBack>
-      <div class="humanoid-assets-upload__content content-back">
-        <ng-container *ngFor="let config of backSlotConfigs">
-          <humanoid-slot
-            [slotConfig]="config"
-            (onAssetSelect)="handleSlotAssetSelect($event)"
-            (onRemove)="handleSlotTakeoff($event)"
-            (onEmptyOverride)="handleEmptyOverride($event)"
-            (onRemoveBase)="handleRemoveBase($event)"
-          ></humanoid-slot>
-        </ng-container>
-      </div>
-    </ng-template>
   </div>
 </div>
