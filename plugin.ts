@@ -12,7 +12,9 @@ export class PixoworAvatarManagePlugin extends Plugin {
     this.pixoworCore.workspace.emit(UIEvents.INJECT_PLUGIN_MENU, {
       pid: this.pid,
       label: '装扮管理',
-      type: 'subwindow'
+      type: 'subwindow',
+      width: 1320,
+      height: 860
     });
   }
 

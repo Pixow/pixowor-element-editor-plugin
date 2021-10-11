@@ -20,7 +20,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
-import { AvatarCardComponent } from 'src/components/avatar-card/avatar-card.component';
+import { HumanoidCardComponent } from 'src/components/humanoid-card/humanoid-card.component';
 import { DateAgoPipe } from 'src/pipes/date-ago.pipe';
 import { AvatarPreviewComponent } from 'src/components/avatar-preview/avatar-preview.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -28,7 +28,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HumanoidAssetsUploadComponent } from 'src/components/humanoid-assets-upload/humanoid-assets-upload.component';
 import { HumanoidSlotComponent } from 'src/components/humanoid-slot/humanoid-slot.component';
 import { CommonModule } from '@angular/common';
-import { HumanoidThumbnailComponent } from 'src/components/humanoid-thumbnail/humanoid-thumbnail.component';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 function initPixoworCore(): PixoworCore {
@@ -44,12 +43,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    AvatarCardComponent,
+    HumanoidCardComponent,
     DateAgoPipe,
     AvatarPreviewComponent,
     HumanoidAssetsUploadComponent,
     HumanoidSlotComponent,
-    HumanoidThumbnailComponent,
   ],
   imports: [
     CommonModule,
@@ -73,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
       isolate: false,
     }),
-    NgxTippyModule
+    NgxTippyModule,
   ],
   providers: [
     AppService,

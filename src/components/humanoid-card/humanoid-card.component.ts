@@ -3,18 +3,18 @@ import { HumanoidSlot } from '@PixelPai/game-core';
 import { HumanoidDescriptionNode } from 'game-capsule';
 import { PixoworCore } from 'pixowor-core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AvatarCard } from 'src/app/app.service';
+import { HumanoidCard } from 'src/app/app.service';
 import { HumanoidAssetsUploadComponent } from '../humanoid-assets-upload/humanoid-assets-upload.component';
 const urlResolve = require('url-resolve-browser');
 
 @Component({
-  selector: 'avatar-card',
-  templateUrl: './avatar-card.component.html',
-  styleUrls: ['./avatar-card.component.scss'],
+  selector: 'humanoid-card',
+  templateUrl: './humanoid-card.component.html',
+  styleUrls: ['./humanoid-card.component.scss'],
   providers: [DialogService],
 })
-export class AvatarCardComponent {
-  @Input() avatar: AvatarCard;
+export class HumanoidCardComponent {
+  @Input() humanoidCard: HumanoidCard;
 
   @Output() onDressup = new EventEmitter();
 
@@ -43,21 +43,28 @@ export class AvatarCardComponent {
   // };
 
   tryDressup(): void {
-    const slots = this.avatar.parts.map((part) => {
-      return {
-        slot: part,
-        version: this.avatar.version,
-        sn: this.avatar._id,
-      };
-    });
+    const humanoidFileUrl = urlResolve(
+      this.pixoworCore.settings.WEB_RESOURCE_URI,
+      `avatar/${this.humanoidCard._id}/${this.humanoidCard.version}/${this.humanoidCard._id}.humanoid`
+    );
 
-    this.onDressup.emit(slots);
+    fetch(humanoidFileUrl)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const message = HumanoidDescriptionNode.decode(new Uint8Array(buffer));
+        const humanoidDescNode = new HumanoidDescriptionNode();
+        humanoidDescNode.deserialize(message);
+
+        console.log('humanoidDescNode: ', humanoidDescNode);
+
+        this.onDressup.emit(humanoidDescNode.slots);
+      });
   }
 
   editHumanoid(): void {
     const humanoidFileUrl = urlResolve(
       this.pixoworCore.settings.WEB_RESOURCE_URI,
-      `avatar/${this.avatar._id}/${this.avatar.version}/${this.avatar._id}.humanoid`
+      `avatar/${this.humanoidCard._id}/${this.humanoidCard.version}/${this.humanoidCard._id}.humanoid`
     );
 
     fetch(humanoidFileUrl)

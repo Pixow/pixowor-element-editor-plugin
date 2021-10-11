@@ -140,16 +140,57 @@ export class AvatarPreviewComponent
       parent: id,
       osdPath: WEB_RESOURCE_URI + '/',
       backgroundColor: '#f0f8ff',
-      // defaultSN: '',// 默认装扮sn
-      // defaultVersion: '', // 默认装扮version
-      // thumbnailWidth: 100// 缩略图宽
-      // thumbnailHeight: 100,// 缩略图高
-      // thumbnailBottomArea: 20// 缩略图下方留空
+      defaultSlots: [
+        'head_face_3',
+        'head_base_3',
+        'head_mask_3',
+        'barm_cost_3',
+        'barm_base_3',
+        'body_cost_3',
+        'body_base_3',
+        'body_cost_dres_3',
+        'farm_cost_3',
+        'farm_base_3',
+        'barm_weap_3',
+        'barm_shld_3',
+        'farm_weap_3',
+        'farm_shld_3',
+        'bleg_cost_3',
+        'bleg_base_3',
+        'fleg_cost_3',
+        'fleg_base_3',
+        'head_base_1',
+        'head_mask_1',
+        'farm_cost_1',
+        'farm_base_1',
+        'body_cost_1',
+        'body_base_1',
+        'body_cost_dres_1',
+        'barm_cost_1',
+        'barm_base_1',
+        'farm_weap_1',
+        'farm_shld_1',
+        'barm_weap_1',
+        'barm_shld_1',
+        'fleg_cost_1',
+        'fleg_base_1',
+        'bleg_cost_1',
+        'bleg_base_1',
+      ],
+      defaultSN: '61615649255707001fbf3f77', // 默认装扮sn
+      defaultVersion: '1', // 默认装扮version
+      thumbnailWidth: 100, // 缩略图宽
+      thumbnailHeight: 100, // 缩略图高
+      thumbnailBottomArea: 10, // 缩略图下方留空
     }) as AvatarEditorCanvas;
 
     this.canvas.on(AvatarEditorEmitType.CanvasCreated, () => {
       this.ready$.next(true);
     });
+  }
+
+  public clear() {
+    this.canvas.clearSlots();
   }
 
   public dressup(slots: HumanoidSlot[]): void {

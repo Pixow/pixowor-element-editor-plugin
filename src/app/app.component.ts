@@ -25,7 +25,7 @@ interface SortOption {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class AppComponent implements OnInit {
   loadLangSuccess = false;
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   pageSize = 25;
   keyword: string;
   total = 0;
-  avatars = [];
+  humanoidCards = [];
   sortOptions: SortOption[] = [
     { name: 'Created Date(recent to past)', value: '-createdAt' },
     { name: 'Created Date(past to recent)', value: 'createdAt' },
@@ -74,8 +74,8 @@ export class AppComponent implements OnInit {
       this.total = data;
     });
 
-    this.appService.avatars$.subscribe((data) => {
-      this.avatars = data;
+    this.appService.humanoidCards$.subscribe((data) => {
+      this.humanoidCards = data;
     });
 
     this.categories = [
@@ -148,7 +148,7 @@ export class AppComponent implements OnInit {
       }),
     };
 
-    this.appService.listAvatarComponents(query);
+    this.appService.getHumanoidCards(query);
   }
 
   search(): void {
@@ -172,15 +172,11 @@ export class AppComponent implements OnInit {
   }
 
   dressup(slots: HumanoidSlot[]): void {
-    console.log(
-      '🚀 ~ file: app.component.ts ~ line 170 ~ AppComponent ~ dressup ~ slots',
-      slots
-    );
+    this.avatarPreview.clear();
     this.avatarPreview.dressup(slots);
   }
 
   public createAvatar(): void {
-
     const humanoidDescNode = new HumanoidDescriptionNode();
 
     this.dialog.open(HumanoidAssetsUploadComponent, {

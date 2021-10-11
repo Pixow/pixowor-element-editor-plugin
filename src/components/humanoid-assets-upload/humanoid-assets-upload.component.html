@@ -12,13 +12,6 @@
     <button class="btn save-upload-btn" (click)="saveAndUpload()">
       保存上传
     </button>
-    <ng-container *ngIf="thumbnailUploadFileConfig">
-      <humanoid-thumbnail
-        [thumbnailUploadFileConfig]="thumbnailUploadFileConfig"
-        (onThumbnailSelect)="handleThumbnailSelect($event)"
-        (onThumbnailRemove)="handleThumbnailRemove()"
-      ></humanoid-thumbnail>
-    </ng-container>
   </div>
   <div class="humanoid-assets-upload__rightbar">
     <i class="pi pi-question-circle" [ngxTippy]="myTooltip" tippyName="content" [tippyProps]="{ trigger: 'click', placement: 'top' }"></i>

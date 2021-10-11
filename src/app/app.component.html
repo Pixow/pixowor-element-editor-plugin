@@ -11,7 +11,7 @@
     <div class="avatar-manage__rightbar">
       <div class="avatar-manage__rightbar-top">
         <h3 class="current-page-report">
-          ITEMS {{first + 1}} TO {{first + avatars.length}} OF {{total}} TOTAL
+          ITEMS {{first + 1}} TO {{first + humanoidCards.length}} OF {{total}} TOTAL
         </h3>
 
         <div class="avatar-manage__filters">
@@ -29,7 +29,7 @@
       </div>
       <div class="avatar-list">
         <div class="avatar-cards">
-          <avatar-card *ngFor="let avatar of avatars" [avatar]="avatar" (onDressup)="dressup($event)"></avatar-card>
+          <humanoid-card *ngFor="let humanoidCard of humanoidCards" [humanoidCard]="humanoidCard" (onDressup)="dressup($event)"></humanoid-card>
         </div>
         <p-paginator
           [rows]="pageSize"

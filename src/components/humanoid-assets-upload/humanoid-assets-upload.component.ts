@@ -1,21 +1,14 @@
-import { UrlResolver } from '@angular/compiler';
 import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ElementRef,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { HumanoidSlot } from '@PixelPai/game-core';
-import * as fs from 'fs';
-import * as path from 'path';
 import { HumanoidDescriptionNode } from 'game-capsule';
-import { Avatar } from 'pixow-api';
 import { PixoworCore, UploadFileConfig } from 'pixowor-core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
@@ -37,7 +30,7 @@ export interface SlotConfig {
   imageBlob?: Blob;
   emptyOverride?: boolean;
   removeBase?: boolean;
-  isBase?: boolean;
+  isHidden?: boolean;
 }
 
 export enum AvatarDir {
@@ -107,7 +100,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 136,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true
+    isHidden: true,
   },
   {
     isFront: true,
@@ -134,7 +127,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 254,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: true,
@@ -173,7 +166,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 377,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: true,
@@ -248,7 +241,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 76,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: true,
@@ -275,7 +268,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 431,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: false,
@@ -326,7 +319,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 136,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: false,
@@ -353,7 +346,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 254,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: false,
@@ -392,7 +385,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 377,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: false,
@@ -467,7 +460,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 76,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
   {
     isFront: false,
@@ -494,7 +487,7 @@ const SlotConfigs: SlotConfig[] = [
     left: 431,
     emptyOverride: undefined,
     removeBase: undefined,
-    isBase: true,
+    isHidden: true,
   },
 ];
 
@@ -636,7 +629,8 @@ export class HumanoidAssetsUploadComponent
       imageToBlob(url, (err, blob) => {
         if (err) {
           console.error(err);
-          reject(err);
+          config.imageBlob = null;
+          resolve(config);
         } else {
           config.imageBlob = blob;
           resolve(config);
@@ -748,7 +742,7 @@ export class HumanoidAssetsUploadComponent
       })
       .then(() => {
         // 4. 上传封面图
-        // return this.generateHumanoidThumbnailAndUpload();
+        return this.generateHumanoidThumbnailAndUpload();
       })
       .then(() => {
         this.messageService.add({
@@ -777,6 +771,7 @@ export class HumanoidAssetsUploadComponent
               const slotConfig = this.slotConfigs.find(
                 (config) => config.slotName === slot.slot
               );
+              slotConfig.sn = this.humanoidDescNode.sn;
               slotConfig.version = this.nextVersion.toString();
             });
 
@@ -851,20 +846,25 @@ export class HumanoidAssetsUploadComponent
     return Promise.all(tasks);
   }
 
-  // private generateHumanoidThumbnailAndUpload(): Promise<any> {
-  //   return this.avatarPreview.generateThumbnail().then((imageData) => {
-  //     const key = `avatar/${this.humanoidDescNode.sn}/${this.humanoidDescNode.version}/thumbnail.png`;
+  public generateHumanoidThumbnailAndUpload(): Promise<any> {
+    return this.avatarPreview.canvas.generateThumbnail().then((imageData) => {
+      console.log('Thumbnail: ', imageData);
+      const key = `avatar/${this.humanoidDescNode.sn}/${this.humanoidDescNode.version}/thumbnail.png`;
 
-  //     const thumbnailUploadFileConfig = {
-  //       key,
-  //       file: new File([this.base64toBlob(imageData)], key),
-  //     };
+      const thumbnailUploadFileConfig = {
+        key,
+        file: new File([this.base64toBlob(imageData)], key),
+      };
 
-  //     return this.pixoworCore.uploadFile(thumbnailUploadFileConfig);
-  //   });
-  // }
+      return this.pixoworCore.uploadFile(thumbnailUploadFileConfig);
+    });
+  }
 
   private base64toBlob(base64Data, contentType?) {
+    if (base64Data.indexOf(',') >= 0) {
+      base64Data = base64Data.substring(base64Data.indexOf(',') + 1);
+    }
+
     contentType = contentType || '';
     const sliceSize = 1024;
     const byteCharacters = atob(base64Data);

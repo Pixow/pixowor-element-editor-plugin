@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Avatar, QueryParams } from 'pixow-api';
 const urlResolve = require('url-resolve-browser');
 
-export type AvatarCard = Avatar & {
+export type HumanoidCard = Avatar & {
   cover: string;
 };
 
@@ -13,41 +13,40 @@ export type AvatarCard = Avatar & {
 })
 export class AppService {
   total$ = new BehaviorSubject<number>(0);
-  avatars$ = new BehaviorSubject<AvatarCard[]>([]);
+  humanoidCards$ = new BehaviorSubject<HumanoidCard[]>([]);
 
   constructor(private pixoworCore: PixoworCore) {}
 
-  listAvatarComponents(query: QueryParams): void {
+  getHumanoidCards(query: QueryParams): void {
     this.pixoworCore.pixowApi.avatar.listAvatars(query).then((res) => {
       this.total$.next(res.total);
 
-      const avatarCards = res.list.map((avatar) => {
-        const avatarCard = avatar as AvatarCard;
+      const humanoidCards = res.list.map((record: HumanoidCard) => {
 
-        if (!avatar.owner) {
-          avatar.owner = {
+        if (!record.owner) {
+          record.owner = {
             _id: '',
             nickname: '已注销',
             username: '已注销',
           };
         }
 
-        if (avatar.version) {
-          avatarCard.cover = urlResolve(
+        if (record.version) {
+          record.cover = urlResolve(
             this.pixoworCore.settings.WEB_RESOURCE_URI,
-            `avatar/part/${avatar._id}/stand_${avatar.version}.png`
+            `avatar/${record._id}/${record.version}/thumbnail.png`
           );
         } else {
-          avatarCard.cover = urlResolve(
+          record.cover = urlResolve(
             this.pixoworCore.settings.WEB_RESOURCE_URI,
-            `avatar/part/${avatar._id}/stand.png`
+            `avatar/${record._id}/stand.png`
           );
         }
 
-        return avatarCard;
+        return record;
       });
 
-      this.avatars$.next(avatarCards);
+      this.humanoidCards$.next(humanoidCards);
     });
   }
 
