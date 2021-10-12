@@ -14,7 +14,12 @@
     </button>
   </div>
   <div class="humanoid-assets-upload__rightbar">
-    <i class="pi pi-question-circle" [ngxTippy]="myTooltip" tippyName="content" [tippyProps]="{ trigger: 'click', placement: 'top' }"></i>
+    <i
+      class="pi pi-question-circle"
+      [ngxTippy]="myTooltip"
+      tippyName="content"
+      [tippyProps]="{ trigger: 'click', placement: 'top' }"
+    ></i>
     <div #myTooltip>
       <div class="tooltip-content">
         <p>
@@ -34,26 +39,30 @@
       <ng-container *ngIf="isFront; else backSlots">
         <div class="humanoid-assets-upload__content content-front">
           <ng-container *ngFor="let config of frontSlotConfigs">
-            <humanoid-slot
-              [slotConfig]="config"
-              (onAssetSelect)="handleSlotAssetSelect($event)"
-              (onRemove)="handleSlotTakeoff($event)"
-              (onEmptyOverride)="handleEmptyOverride($event)"
-              (onRemoveBase)="handleRemoveBase($event)"
-            ></humanoid-slot>
+            <ng-container *ngIf="!config.isHidden">
+              <humanoid-slot
+                [slotConfig]="config"
+                (onAssetSelect)="handleSlotAssetSelect($event)"
+                (onRemove)="handleSlotTakeoff($event)"
+                (onEmptyOverride)="handleEmptyOverride($event)"
+                (onRemoveBase)="handleRemoveBase($event)"
+              ></humanoid-slot>
+            </ng-container>
           </ng-container>
         </div>
       </ng-container>
       <ng-template #backSlots>
         <div class="humanoid-assets-upload__content content-back">
           <ng-container *ngFor="let config of backSlotConfigs">
-            <humanoid-slot
-              [slotConfig]="config"
-              (onAssetSelect)="handleSlotAssetSelect($event)"
-              (onRemove)="handleSlotTakeoff($event)"
-              (onEmptyOverride)="handleEmptyOverride($event)"
-              (onRemoveBase)="handleRemoveBase($event)"
-            ></humanoid-slot>
+            <ng-container *ngIf="!config.isHidden">
+              <humanoid-slot
+                [slotConfig]="config"
+                (onAssetSelect)="handleSlotAssetSelect($event)"
+                (onRemove)="handleSlotTakeoff($event)"
+                (onEmptyOverride)="handleEmptyOverride($event)"
+                (onRemoveBase)="handleRemoveBase($event)"
+              ></humanoid-slot>
+            </ng-container>
           </ng-container>
         </div>
       </ng-template>

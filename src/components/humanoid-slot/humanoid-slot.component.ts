@@ -118,24 +118,22 @@ export class HumanoidSlotComponent implements OnInit, AfterViewInit, OnChanges {
   toggleEmptyOverride(): void {
     if (this.slotConfig.hasOwnProperty('emptyOverride')) {
       this.slotConfig.emptyOverride = !!!this.slotConfig.emptyOverride;
+      this.onEmptyOverride.emit({
+        slotName: this.slotConfig.slotName,
+        emptyOverride: this.slotConfig.emptyOverride,
+      });
     }
-
-    this.onEmptyOverride.emit({
-      slotName: this.slotConfig.slotName,
-      emptyOverride: this.slotConfig.emptyOverride,
-    });
   }
 
   // Remove this slot base when dress this slot cost
   toggleRemoveBase(): void {
     if (this.slotConfig.hasOwnProperty('removeBase')) {
       this.slotConfig.removeBase = !!!this.slotConfig.removeBase;
+      this.onRemoveBase.emit({
+        slotName: this.slotConfig.slotName,
+        removeBase: this.slotConfig.removeBase,
+      });
     }
-
-    this.onRemoveBase.emit({
-      slotName: this.slotConfig.slotName,
-      removeBase: this.slotConfig.removeBase,
-    });
   }
 
   takeoffSlot(): void {

@@ -49,7 +49,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 93,
     top: 7,
     left: 90,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -61,7 +61,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 93,
     top: 7,
     left: 253,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -73,7 +73,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 93,
     top: 7,
     left: 413,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -85,8 +85,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 150,
     left: 136,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: true,
@@ -98,8 +98,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 260,
     left: 136,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -112,8 +112,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 177,
     left: 254,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: true,
@@ -125,8 +125,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 67,
     left: 254,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -139,7 +139,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 295,
     left: 254,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -151,8 +151,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 150,
     left: 377,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: true,
@@ -164,8 +164,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 260,
     left: 377,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -178,7 +178,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 176,
     left: 19,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -190,7 +190,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 286,
     left: 19,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -202,7 +202,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 176,
     left: 495,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -214,7 +214,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 286,
     left: 495,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: true,
@@ -226,8 +226,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 186,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: true,
@@ -239,8 +239,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 76,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -253,8 +253,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 321,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: true,
@@ -266,8 +266,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 431,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -280,7 +280,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 93,
     top: 7,
     left: 253,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -292,7 +292,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 93,
     top: 7,
     left: 413,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -304,8 +304,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 150,
     left: 136,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: false,
@@ -317,8 +317,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 260,
     left: 136,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -331,8 +331,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 177,
     left: 254,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: false,
@@ -344,8 +344,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 67,
     left: 254,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -358,7 +358,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 36,
     top: 295,
     left: 254,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -370,8 +370,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 150,
     left: 377,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: false,
@@ -383,8 +383,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 260,
     left: 377,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -397,7 +397,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 176,
     left: 19,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -409,7 +409,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 286,
     left: 19,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -421,7 +421,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 176,
     left: 495,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -433,7 +433,7 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 26,
     top: 286,
     left: 495,
-    emptyOverride: undefined,
+    emptyOverride: null,
   },
   {
     isFront: false,
@@ -445,8 +445,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 186,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: false,
@@ -458,8 +458,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 76,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
   {
@@ -472,8 +472,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 321,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
   },
   {
     isFront: false,
@@ -485,8 +485,8 @@ const SlotConfigs: SlotConfig[] = [
     limitImageHeight: 25,
     top: 450,
     left: 431,
-    emptyOverride: undefined,
-    removeBase: undefined,
+    emptyOverride: null,
+    removeBase: null,
     isHidden: true,
   },
 ];
@@ -510,8 +510,6 @@ export class HumanoidAssetsUploadComponent
   readySubscription: Subscription = null;
 
   slotConfigs: SlotConfig[];
-
-  thumbnailUploadFileConfig: UploadFileConfig;
 
   nextVersion: number;
 
@@ -551,7 +549,6 @@ export class HumanoidAssetsUploadComponent
   }
 
   async ngOnInit() {
-    this.loadThumbnail();
     await this.initSlotConfigs();
   }
 
@@ -566,30 +563,6 @@ export class HumanoidAssetsUploadComponent
       });
   }
 
-  private loadThumbnail() {
-    const key = `avatar/${this.humanoidDescNode.sn}/${this.humanoidDescNode.version}/thumbnail.png`;
-    const humanoidThumbnailUrl = urlResolve(
-      this.pixoworCore.settings.WEB_RESOURCE_URI,
-      key
-    );
-
-    imageToBlob(humanoidThumbnailUrl, (err, blob) => {
-      if (err) {
-        console.error(err);
-
-        this.thumbnailUploadFileConfig = {
-          key,
-          file: null,
-        };
-      } else {
-        this.thumbnailUploadFileConfig = {
-          key,
-          file: new File([blob], key),
-        };
-      }
-    });
-  }
-
   private getSlotAssetKey(sn: string, version: string, slotName: string) {
     return `avatar/${sn}/${version}/${slotName}.png`;
   }
@@ -597,6 +570,7 @@ export class HumanoidAssetsUploadComponent
   private initSlotConfigs(): Promise<any> {
     // Generate slotConfigs with humanoidDescNode slots
     const slotConfigs = this.generateSlotConfigsWithHumanoidDescSlots();
+    console.log('🚀 initSlotConfigs ~ slotConfigs', slotConfigs);
 
     const tasks: Promise<any>[] = [];
 
@@ -655,14 +629,6 @@ export class HumanoidAssetsUploadComponent
     this.dressup(humanoidSlots);
   }
 
-  public handleThumbnailSelect(event) {
-    this.thumbnailUploadFileConfig = event;
-  }
-
-  public handleThumbnailRemove() {
-    this.thumbnailUploadFileConfig.file = null;
-  }
-
   public turnAroundHumanoidSlots(): void {
     this.isFront = !this.isFront;
   }
@@ -671,12 +637,14 @@ export class HumanoidAssetsUploadComponent
     this.avatarPreview.dressup(slots);
   }
 
+  private getSlotConfig(slotName: string): SlotConfig {
+    return this.slotConfigs.find((item) => item.slotName === slotName);
+  }
+
   public handleSlotAssetSelect(event): void {
     const { slotName, imageBlob } = event;
 
-    const slotConfig = this.slotConfigs.find(
-      (item) => item.slotName === slotName
-    );
+    const slotConfig = this.getSlotConfig(slotName);
     slotConfig.imageBlob = imageBlob;
 
     // preview avatar with slot
@@ -684,48 +652,33 @@ export class HumanoidAssetsUploadComponent
       const humanoidSlot: HumanoidSlot = {
         slot: slotConfig.slotName,
         version: slotConfig.version,
-        sn: this.humanoidDescNode.sn,
+        sn: slotConfig.sn,
         imgDataBase64: imgData as string,
       };
-
       this.dressup([humanoidSlot]);
-      // Record slot data in humanoidNode
-      delete humanoidSlot.imgDataBase64;
-      this.humanoidDescNode.addSlot(humanoidSlot);
     });
   }
 
   handleSlotTakeoff(event): void {
     const { slotName } = event;
 
-    const slotConfig = this.slotConfigs.find(
-      (item) => item.slotName === slotName
-    );
+    const slotConfig = this.getSlotConfig(slotName);
     slotConfig.imageBlob = null;
 
     this.avatarPreview.canvas.cancelSlots([slotName]);
-
-    // Record slot data in humanoidNode
-    this.humanoidDescNode.removeSlot({
-      slot: slotConfig.slotName,
-    });
   }
 
   handleEmptyOverride(event): void {
     const { slotName, emptyOverride } = event;
 
-    const slotConfig = this.slotConfigs.find(
-      (item) => item.slotName === slotName
-    );
+    const slotConfig = this.getSlotConfig(slotName);
     slotConfig.emptyOverride = emptyOverride;
   }
 
   handleRemoveBase(event): void {
     const { slotName, removeBase } = event;
 
-    const slotConfig = this.slotConfigs.find(
-      (item) => item.slotName === slotName
-    );
+    const slotConfig = this.getSlotConfig(slotName);
     slotConfig.removeBase = removeBase;
   }
 
@@ -764,16 +717,6 @@ export class HumanoidAssetsUploadComponent
           })
           .then((res) => {
             this.humanoidDescNode.version = this.nextVersion.toString();
-            this.humanoidDescNode.slots.forEach((slot) => {
-              slot.version = this.nextVersion.toString();
-
-              // Sync slotConfig version data
-              const slotConfig = this.slotConfigs.find(
-                (config) => config.slotName === slot.slot
-              );
-              slotConfig.sn = this.humanoidDescNode.sn;
-              slotConfig.version = this.nextVersion.toString();
-            });
 
             resolve(this.humanoidDescNode);
           })
@@ -790,17 +733,6 @@ export class HumanoidAssetsUploadComponent
           .then((res) => {
             this.humanoidDescNode.sn = res.data._id;
             this.humanoidDescNode.version = '1';
-            this.humanoidDescNode.slots.forEach((slot) => {
-              slot.sn = res.data._id;
-              slot.version = '1';
-
-              // Sync slotConfig version data
-              const slotConfig = this.slotConfigs.find(
-                (config) => config.slotName === slot.slot
-              );
-              slotConfig.sn = res.data._id;
-              slotConfig.version = '1';
-            });
 
             resolve(this.humanoidDescNode);
           })
@@ -810,6 +742,42 @@ export class HumanoidAssetsUploadComponent
   }
 
   private serializeAndUploadHumanoid(): Promise<any> {
+    // generate humanoidDescNode slots from slotConfigs
+
+    this.humanoidDescNode.slots = this.slotConfigs
+      .filter((slotConfig) => {
+        if (
+          slotConfig.imageBlob ||
+          !!slotConfig.removeBase ||
+          !!slotConfig.emptyOverride
+        ) {
+          return slotConfig;
+        }
+      })
+      .map((slotConfig) => {
+        if (slotConfig.imageBlob) {
+          slotConfig.sn = this.humanoidDescNode.sn;
+          slotConfig.version = this.humanoidDescNode.version;
+
+          return {
+            slot: slotConfig.slotName,
+            version: this.humanoidDescNode.version,
+            sn: this.humanoidDescNode.sn,
+            emptyOverride: slotConfig.emptyOverride,
+            ...(slotConfig.removeBase && { removeBase: slotConfig.removeBase }),
+          };
+        } else {
+          return {
+            slot: slotConfig.slotName,
+            version: this.humanoidDescNode.version,
+            emptyOverride: slotConfig.emptyOverride,
+            ...(slotConfig.removeBase && { removeBase: slotConfig.removeBase }),
+          };
+        }
+      });
+
+    console.log('slots: ', this.humanoidDescNode.slots);
+
     const buff = this.humanoidDescNode.serialize();
 
     const blob = new Blob([buff]);

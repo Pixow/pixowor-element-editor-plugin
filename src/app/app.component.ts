@@ -176,7 +176,7 @@ export class AppComponent implements OnInit {
     this.avatarPreview.dressup(slots);
   }
 
-  public createAvatar(): void {
+  public createHumanoidDesc(): void {
     const humanoidDescNode = new HumanoidDescriptionNode();
 
     this.dialog.open(HumanoidAssetsUploadComponent, {
