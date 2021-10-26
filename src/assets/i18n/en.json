@@ -1,5 +1,61 @@
 {
-  "AVATARPREVIEW": {
+  "ELEMENTEDITOR": {
+    "ELEMENTMETA": "Meta",
+    "TYPE": "Type",
+    "NAME": "Name",
+    "DESC": "Description",
+    "LAYER": "Layer",
+    "THUMB": "Thumbnail",
+    "CLICKUPLOAD": "Click to upload",
+    "NONE": "None",
+    "LAYERCONTROL": "Layer Control",
+    "ADDMOUNTPOINT": "Add Mount Point",
+    "ADDANIMATIONLAYER": "Add Animation Layer",
+    "ADDMOUNTLAYER": "Add Mount Layer",
+    "MOVELAYERUP": "Move Layer Up",
+    "MOVELAYERDOWN": "Move Layer Down",
+    "DELETELAYER": "Delete Layer",
+    "MOUNTLAYER": "Mount Layer",
+    "MOUNTPOINT": "Mount Point",
+    "LAYERSETTINGS": "Layer Settings",
+    "OFFSET": "Offset",
+    "ELEMENTPROPERTIES": "Element Properties",
+    "PROPERTY": "Property",
+    "ADDPROPERTY": "Add Property",
+    "ELEMENT": "Element",
+    "TERRAIN": "Terrain",
+    "EFFECT": "Effect"
+  },
+  "ELEMENTSETTINGS": {
+    "FLOOR": "Floor",
+    "SURFACE": "Surface",
+    "HANGING": "Hanging"
+  },
+  "ASSETSLIST": {
+    "TITLE": "Assets",
+    "ADD": "Add Assets"
+  },
+  "ANIMATIONLIST": {
+    "ANIMATIONSEQUENCE": "Frame Sequence",
+    "DEFAULTANIMATION": "Default Animation",
+    "SETDEFAULTANIMATION": "Set Default Animation",
+    "ADD": "Add"
+  },
+  "TIMELINE": {
+    "TITLE": "Timeline",
+    "SPEED": "Animation frequency",
+    "LOOP": "Play Loop",
+    "ADDFRAME": "Add Frame",
+    "COPYFRAME": "Copy Frame",
+    "DELETEFRAME": "Delete Frame",
+    "MOVELEFT": "Move Frame Left",
+    "MOVERIGHT": "Move Frame Right"
+  },
+  "CHARACTER_ACTION_SETTING": {
+    "TITLE": "Character action settings",
+    "PREVIEW": "Preview the actions of characters interacting with objects"
+  },
+  "MYAVATAR": {
     "PREVIEW": "Preview",
     "FRONT": "Front",
     "BACK": "Back",
@@ -25,5 +81,10 @@
     "BLOWUP": "burst",
     "EMOTION02": "Paying respect",
     "MINING": "Mining"
+  },
+  "ANIMATIONDIALOG": {
+    "NAME": "Name",
+    "CANCEL": "Cancel",
+    "OK": "Ok"
   }
 }

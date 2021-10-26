@@ -1,0 +1,35 @@
+<div class="settings-panel">
+  <panel title="{{'ELEMENTEDITOR.ELEMENTMETA' | translate}}">
+    <panel-body>
+      <div class="settings-row">
+        <label>{{'ELEMENTEDITOR.TYPE' | translate}}</label>
+        <div>
+          <span>{{ element.type }}</span>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <label>{{'ELEMENTEDITOR.NAME' | translate}}</label>
+        <div>
+            <span>{{ element.name }}</span>
+        </div>
+      </div>
+<!--
+      <div class="settings-row" *ngIf="showLayer">
+        <label>{{'ELEMENTEDITOR.LAYER' | translate}}</label>
+        <select [(ngModel)]="element.layer">
+          <option *ngFor="let item of layerOption;" [ngValue]="item.value">
+            {{ item.name }}
+          </option>
+        </select>
+      </div> -->
+
+      <div class="settings-row">
+        <label>{{'ELEMENTEDITOR.THUMB' | translate}}</label>
+        <div for="image-file" class="thumb">
+
+        </div>
+      </div>
+    </panel-body>
+  </panel>
+</div>

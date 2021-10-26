@@ -1,0 +1,56 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  .pi {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+.layer-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  cursor: pointer;
+
+  &.selected {
+    background-color: #607d8b !important;
+    color: white;
+  }
+
+  &:hover {
+    color: rgba($color: #fff, $alpha: 1);
+
+    .close-icon > svg {
+      fill: rgba($color: #fff, $alpha: 1);
+    }
+  }
+
+  .animationmountlayer-item {
+    width: 100%;
+
+    ul > li {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .pi {
+    opacity: 0.5;
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .mount-point {
+    li {
+      padding-left: 10px;
+    }
+  }
+}

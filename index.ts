@@ -1,3 +1,3 @@
-import { PixoworAvatarManagePlugin } from './plugin';
+import { PixoworElementEditorPlugin } from './plugin';
 
-export default PixoworAvatarManagePlugin;
+export default PixoworElementEditorPlugin;

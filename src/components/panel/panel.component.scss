@@ -1,0 +1,85 @@
+
+@import "../../styles.scss";
+
+.panel {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  border: 1px solid $dark;
+  padding: 0;
+  margin: 0;
+
+  .panel-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .lds-ripple {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple {
+    0% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: -1px;
+      left: -1px;
+      width: 58px;
+      height: 58px;
+      opacity: 0;
+    }
+  }
+
+  .panel__header {
+    height: 26px;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $primary-btn-active-color;
+
+    h4 {
+      color: $white;
+      font-size: $H4;
+    }
+
+    .panel__header__closebtn {
+      font-size: $H3;
+      cursor: pointer;
+    }
+  }
+
+  .panel__body {
+    width: 100%;
+    height: calc(100% - 26px);
+    color: #ffffff;
+    overflow: hidden;
+    background-color: $primary-bg-color;
+
+    input,
+    select {
+      color: #000000;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="animations-list-panel">
+  <panel title="{{ 'ANIMATIONLIST.ANIMATIONSEQUENCE' | translate }}">
+    <panel-body>
+      <ul
+        class="animations-list scrollbar-deep-purple bordered-deep-purple thin"
+      >
+        <li
+          class="animations-item"
+          *ngFor="let animationData of element.animations.animationData; let i = index"
+          [class.selected]="isAnimationDataSelected(animationData)"
+          (click)="onSelectAnimationData(animationData)"
+        >
+          <div class="animations-item__info">
+            <p (click)="modifyAnimationName(i)">
+              {{ animationData.name }}
+            </p>
+          </div>
+
+          <div class="animations-item__buttons">
+            <ng-container
+              *ngIf="
+                element.animations.defaultAnimationName === animationData.name;
+                else caret
+              "
+            >
+              <i class="pi pi-circle-on" pTooltip="{{ 'ANIMATIONLIST.DEFAULTANIMATION' | translate }}" tooltipPosition="top"></i>
+            </ng-container>
+            <ng-template #caret>
+              <i
+                class="pi pi-circle-off"
+                pTooltip="{{ 'ANIMATIONLIST.SETDEFAULTANIMATION' | translate }}"
+                tooltipPosition="top"
+                (click)="setDefaultAnimationData(animationData)"
+              ></i>
+            </ng-template>
+
+            <small-cross (click)="onRemoveAnimationData(i)"></small-cross>
+          </div>
+        </li>
+      </ul>
+      <div class="animation-tools">
+        <button class="btn" (click)="onOpenAddAnimationDataDialog()">
+          {{ "ANIMATIONLIST.ADD" | translate }}
+        </button>
+      </div>
+    </panel-body>
+  </panel>
+</div>
+<p-toast position="top-center"></p-toast>

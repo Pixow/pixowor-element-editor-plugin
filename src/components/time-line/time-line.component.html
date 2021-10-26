@@ -1,0 +1,51 @@
+<div class="time-line-panel">
+  <panel title="{{ 'TIMELINE.TITLE' | translate }}">
+    <panel-body>
+      <div class="time-line" *ngIf="animationLayer">
+        <div class="animation-settings">
+          <div class="animation-settings__play-buttons">
+            <i
+              class="pi pi-play-animation"
+              *ngIf="!playing; else stop"
+              (click)="onPlay()"
+            ></i>
+            <ng-template #stop>
+              <i class="pi pi-pause-animation" (click)="onStop()"></i>
+            </ng-template>
+            <select class="framerate-select" [(ngModel)]="frameRate">
+              <option *ngFor="let option of frameRateOptions" value="{{option.value}}">{{option.display}}</option>
+            </select>
+            <i class="pi pi-animation-loop" [ngClass]="{'active': selectedAnimationData.loop}" (click)="toggleAnimationLoop()"  pTooltip="{{ 'TIMELINE.LOOP' | translate }}"></i>
+          </div>
+          <div class="time-line-tools">
+            <i class="pi pi-add-frame" (click)="onAddFrame()"  pTooltip="{{ 'TIMELINE.ADDFRAME' | translate }}"></i>
+            <i class="pi pi-copy-frame" (click)="onAddFrame()"  pTooltip="{{ 'TIMELINE.COPYFRAME' | translate }}"></i>
+            <i class="pi pi-delete-frame" (click)="onDeleteFrame()"  pTooltip="{{ 'TIMELINE.DELETEFRAME' | translate }}"></i>
+            <i class="pi pi-move-left" (click)="onMoveFrame(2)"  pTooltip="{{ 'TIMELINE.MOVELEFT' | translate }}"></i>
+            <i class="pi pi-move-right" (click)="onMoveFrame(-2)"  pTooltip="{{ 'TIMELINE.MOVERIGHT' | translate }}"></i>
+          </div>
+        </div>
+
+        <ul
+          cdkDropList
+          class="frame-time-list scrollbar-deep-purple bordered-deep-purple thin"
+          id="frame-time"
+          (cdkDropListDropped)="onChangeFrameIndex($event)"
+        >
+          <animation-frame
+            *ngFor="let frame of animationFrames"
+            [frame]="frame"
+            [selected]="frame.frameIndex === selectedFrameIndex"
+            (click)="onSelectFrame(frame)"
+            (onRemoveFrame)="onDeleteFrame(frame)"
+            (decreateFrameDuration)="onDecreaseFrameDuration(frame)"
+            (increaseFrameDuration)="onIncreaseFrameDuration(frame)"
+            cdkDragLockAxis="x"
+            cdkDrag
+          >
+          </animation-frame>
+        </ul>
+      </div>
+    </panel-body>
+  </panel>
+</div>

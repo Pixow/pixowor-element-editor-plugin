@@ -1,0 +1,76 @@
+<panel title="{{ 'ELEMENTEDITOR.LAYERCONTROL' | translate }}">
+  <panel-body>
+    <div class="toolbar">
+      <i
+        class="pi pi-add-mount-point"
+        pTooltip="{{ 'ELEMENTEDITOR.ADDMOUNTPOINT' | translate }}"
+        *ngIf="isAnimationMountLayer()"
+        (click)="onAddAnimationMountPoint()"
+      ></i>
+      <i
+        class="pi pi-add-animation-layer"
+        pTooltip="{{ 'ELEMENTEDITOR.ADDANIMATIONLAYER' | translate }}"
+        tooltipPosition="top"
+        (click)="onAddAnimationLayer()"
+      ></i>
+      <i
+        class="pi pi-add-mount-layer"
+        pTooltip="{{ 'ELEMENTEDITOR.ADDMOUNTLAYER' | translate }}"
+        tooltipPosition="top"
+        (click)="onAddAnimationMountLayer()"
+      ></i>
+      <i
+        class="pi pi-arrow-up"
+        pTooltip="{{ 'ELEMENTEDITOR.MOVELAYERUP' | translate }}"
+        tooltipPosition="top"
+        (click)="onMoveLayer(1)"
+      ></i>
+      <i
+        class="pi pi-arrow-down"
+        pTooltip="{{ 'ELEMENTEDITOR.MOVELAYERDOWN' | translate }}"
+        tooltipPosition="top"
+        (click)="onMoveLayer(-1)"
+      ></i>
+      <i
+        class="pi pi-trash"
+        pTooltip="{{ 'ELEMENTEDITOR.DELETELAYER' | translate }}"
+        tooltipPosition="top"
+        (click)="onDeleteLayer()"
+      ></i>
+    </div>
+    <ul>
+      <li
+        class="layer-item"
+        *ngFor="let layer of mixinLayers; let i = index"
+        [class.selected]="layer.id === selectedLayer.id"
+        (click)="onSelectLayer(layer, i)"
+      >
+        <p *ngIf="isAnimationLayer(layer); else animationMountLayer">
+          {{ layer.name || ("ELEMENTEDITOR.LAYER" | translate) + layer.id }}
+        </p>
+        <ng-template #animationMountLayer>
+          <div class="animationmountlayer-item">
+            <p>{{ "ELEMENTEDITOR.MOUNTLAYER" | translate }}</p>
+            <ul class="mount-point">
+              <li
+                *ngFor="let name of layer.mountPoint; let i = index"
+                (click)="onSelectAnimationMountPoint(i)"
+              >
+                {{ ("ELEMENTEDITOR.MOUNTPOINT" | translate) + i }}
+                <small-cross (click)="onDeleteAnimationMountPoint(i)"></small-cross>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+
+        <ng-container *ngIf="isAnimationLayer(layer)">
+          <i
+            class="pi pi-eye"
+            [class.visible]="layer.layerVisible"
+            (click)="onToggleLayerVisible(layer)"
+          ></i>
+        </ng-container>
+      </li>
+    </ul>
+  </panel-body>
+</panel>

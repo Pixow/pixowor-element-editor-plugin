@@ -1,0 +1,79 @@
+@import "../../styles.scss";
+
+.assets-list-panel {
+  height: 100%;
+}
+.selected {
+  background-color: #607d8b !important;
+  color: white;
+}
+
+.assets-title {
+  margin: 10px 5px;
+}
+
+.assets {
+  width: 100%;
+  height: 100%;
+}
+
+.assets-list {
+  color: whitesmoke;
+  list-style-type: none;
+  width: 100%;
+  height: calc(100% - 35px);
+  margin: 0;
+  overflow-y: auto;
+
+  .asset-item {
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    &.selected {
+      background-color: $primary-btn-active-color !important;
+      color: white;
+    }
+
+    &:hover {
+      background-color: $primary-btn-bg-color;
+      color: rgba($color: #fff, $alpha: 1);
+
+      .close-icon > svg {
+        fill: rgba($color: #fff, $alpha: 1);
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: row;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      p {
+        max-width: 160px;
+        margin: 0;
+        margin-left: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .close-icon {
+      cursor: pointer;
+      margin-bottom: 5px;
+
+      svg {
+        vertical-align: middle;
+        fill: rgba($color: #fff, $alpha: 0.6);
+      }
+    }
+  }
+}
+
+

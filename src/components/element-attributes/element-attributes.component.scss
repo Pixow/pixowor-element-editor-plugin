@@ -1,0 +1,84 @@
+
+.element-attributes__body {
+  max-height: 233px;
+  height: calc(100% - 35px);
+  overflow-y: auto;
+}
+
+.btn {
+  display: block;
+  width: 95%;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  // border: 1px solid $TQ-primary-btn-active-color;
+  // color: $TQ-white;
+  background-color: transparent;
+
+  &:hover {
+    // background-color: $TQ-primary-btn-active-color !important;
+    // border: 1px solid $TQ-primary-btn-active-color !important;
+    // color: $TQ-button-active;
+  }
+}
+
+// override ui-accordion style
+:host {
+  ::ng-deep .ui-accordion {
+    .ui-accordion-header {
+      a {
+        padding: 0.3em;
+        // font-size: $TQ-H4;
+      }
+
+      &:hover {
+        // background-color: $TQ-primary-btn-active-color;
+        border: none;
+      }
+    }
+    .ui-accordion-header:not(.ui-state-disabled) a {
+      // background-color: $TQ-primary-btn-active-color;
+      border: 1px solid transparent;
+      color: #848484;
+    }
+    .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      // background-color: $TQ-primary-btn-active-color;
+      border: 1px solid transparent;
+      color: white;
+    }
+    .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover
+      a
+      .ui-accordion-toggle-icon {
+      color: #ffffff;
+    }
+    .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      // background-color: $TQ-primary-btn-active-color;
+      border: 1px solid transparent;
+      color: white;
+    }
+    .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      // background-color: $TQ-primary-btn-active-color;
+      border: 1px solid transparent;
+      color: white;
+    }
+
+    .ui-accordion-content {
+      padding: 0 !important;
+      background-color: transparent;
+      border: 1px solid transparent;
+    }
+  }
+}
+
+.node-properties-panel {
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+
+  &__body {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+}

@@ -1,45 +1,217 @@
-/* You can add global styles to this file, and also import other style files */
+$H1: 20px;
+$H2: 16px;
+$H3: 14px;
+$H4: 12px;
+$H5: 10px;
+$P: 12px;
 
-.pi-flip {
-  background: url("./assets//flip.png") no-repeat center;
-  background-size: contain;
-}
+// Global Colors
+$primary-bg-color: #30343d;
+$primary-li-color: #30404d;
+$primary-content-color: #292d34;
+$primary-btn-bg-color: #293038;
+$primary-btn-active-color: #202934;
+$primary-disabled-color: #394b59;
+$primary-disabled-text-color: rgba(92, 112, 128, 0.8);
+$danger: #c23030;
+$warning: #bf7326;
+$dark: #000000;
+$white: whitesmoke;
+$white-50: rgba(255, 255, 255, 0.5);
+$white-20: rgba(255, 255, 255, 0.5);
+$blue: #167ed1;
+$green: green;
+$text-white: rgba(255, 255, 255, 1);
+$text-white-50: rgba(255, 255, 255, 0.5);
 
-.pi-arrow-circle {
-  background: url("./assets//arrow-circle.png") no-repeat center;
-  background-size: contain;
-}
+$button-active: #6c8cad;
 
-.pi-broom {
-  background: url("./assets/broom.png") no-repeat center;
-  background-size: contain;
-}
-
-.pi-removebase {
-  background: url("./assets/removebase.png") no-repeat center;
-  background-size: contain;
-}
-
-button.btn {
+.btn {
+  display: block;
+  width: 95%;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border: 1px solid $primary-btn-active-color;
+  color: $white;
+  background-color: transparent;
   outline: none;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.875em;
-  letter-spacing: 0.08em;
-  line-height: 28px;
-  text-transform: uppercase;
-  font-weight: 700;
-  background-color: #00b0ff;
-  border-radius: 4px;
-  border-bottom: 3px solid #0091ea;
-  text-align: center;
-  position: relative;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #2abdff;
+    background-color: $primary-btn-active-color !important;
+    border: 1px solid $primary-btn-active-color !important;
+    color: $button-active;
   }
+
+  &:active {
+    outline: none;
+  }
+}
+
+.scrollbar-deep-purple::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.scrollbar-deep-purple::-webkit-scrollbar {
+  width: 12px;
+  height: 6px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-deep-purple::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #202934;
+}
+
+.scrollbar-cyan::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.scrollbar-cyan::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-cyan::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #00bcd4;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-image: -webkit-linear-gradient(330deg, #d4fc79 0%, #96e6a1 100%);
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.scrollbar-ripe-malinka::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.scrollbar-ripe-malinka::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-image: -webkit-linear-gradient(330deg, #f093fb 0%, #f5576c 100%);
+  background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bordered-deep-purple::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border: 1px solid #512da8;
+}
+
+.bordered-deep-purple::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: none;
+}
+
+.bordered-cyan::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border: 1px solid #00bcd4;
+}
+
+.bordered-cyan::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: none;
+}
+
+.square::-webkit-scrollbar-track {
+  border-radius: 0 !important;
+}
+
+.square::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}
+
+.thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+.pi-add-mount-point {
+  background: url("./assets/icons8-roller-skis.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-add-mount-layer {
+  background: url("./assets/icons8-animation.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-add-animation-layer {
+  background: url("./assets/icons8-layers.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-move-left {
+  background: url("./assets/icons8-left.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-move-right {
+  background: url("./assets/icons8-right.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-add-frame {
+  background: url("./assets/icons8-add-image.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-copy-frame {
+  background: url("./assets/icons8-copy.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-frame-rate {
+   background: url("./assets/icons8-frame-rate.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-animation-loop {
+  background: url("./assets/icons8-oval-loop.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-animation-loop.active {
+  background: url("./assets/icons8-oval-loop-active.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-play-animation {
+    background: url("./assets/icons8-play.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-pause-animation {
+    background: url("./assets/icons8-pause.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-delete-frame {
+  background: url("./assets/icons8-delete.png") no-repeat center;
+  background-size: contain;
 }

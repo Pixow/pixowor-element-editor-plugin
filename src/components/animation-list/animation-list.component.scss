@@ -1,0 +1,93 @@
+.animations-list-panel {
+  height: 100%;
+}
+.selected {
+  background-color: #607d8b !important;
+  color: white;
+}
+
+.animation-title {
+  margin: 10px 5px;
+}
+
+.animations-list {
+  color: whitesmoke;
+  list-style-type: none;
+  width: 100%;
+  height: calc(100% - 35px);
+  margin: 0;
+  overflow-y: auto;
+
+  .animations-item {
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    &.selected {
+      // background-color: $TQ-primary-btn-active-color !important;
+      color: white;
+    }
+
+    &:hover {
+      // background-color: $TQ-primary-btn-bg-color;
+      color: rgba($color: #fff, $alpha: 1);
+
+      .close-icon > svg {
+        fill: rgba($color: #fff, $alpha: 1);
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: row;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      p {
+        max-width: 160px;
+        margin: 0;
+        margin-left: 5px;
+        white-space: pre;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      .close-icon {
+        cursor: pointer;
+
+        svg {
+          vertical-align: middle;
+          fill: rgba($color: #fff, $alpha: 0.6);
+        }
+      }
+    }
+  }
+}
+
+.animation-tools {
+  margin-bottom: 5px;
+}
+.btn {
+  display: block;
+  width: 95%;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  // border: 1px solid $TQ-primary-btn-active-color;
+  // color: $TQ-white;
+  background-color: transparent;
+
+  &:hover {
+    // background-color: $TQ-primary-btn-active-color !important;
+    // border: 1px solid $TQ-primary-btn-active-color !important;
+    // color: $TQ-button-active;
+  }
+}

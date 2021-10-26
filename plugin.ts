@@ -1,7 +1,7 @@
 import { Plugin, PixoworCore, UIEvents } from 'pixowor-core';
 import manifest from './manifest.json';
 
-export class PixoworAvatarManagePlugin extends Plugin {
+export class PixoworElementEditorPlugin extends Plugin {
   constructor(pixoworCore: PixoworCore) {
     super(pixoworCore, manifest);
   }
@@ -11,10 +11,10 @@ export class PixoworAvatarManagePlugin extends Plugin {
 
     this.pixoworCore.workspace.emit(UIEvents.INJECT_PLUGIN_MENU, {
       pid: this.pid,
-      label: '装扮管理',
+      label: '物件编辑器',
       type: 'subwindow',
       width: 1320,
-      height: 860
+      height: 870
     });
   }
 

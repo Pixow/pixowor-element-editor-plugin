@@ -1,42 +1,20 @@
-<ng-container *ngIf="loadLangSuccess">
-  <div class="avatar-manage-container">
-    <div class="avatar-manage__sidebar">
-      <div class="sidebar-content">
-        <avatar-preview></avatar-preview>
-        <!-- <p-panelMenu [model]="categories" [style]="{'width':'260px', 'margin-top': '10px'}"></p-panelMenu> -->
+<ng-container *ngIf="element$ | async as element; else loading">
+  <div class="element-editor">
+    <element-settings [element]="element"></element-settings>
+    <assets-list></assets-list>
+    <animation-list [element]="element"></animation-list>
 
-        <button class="btn new-avatar-btn" (click)="createHumanoidDesc()">新建装扮</button>
-      </div>
-    </div>
-    <div class="avatar-manage__rightbar">
-      <div class="avatar-manage__rightbar-top">
-        <h3 class="current-page-report">
-          ITEMS {{first + 1}} TO {{first + humanoidCards.length}} OF {{total}} TOTAL
-        </h3>
+    <element-editor-canvas [element]="element"></element-editor-canvas>
+    <time-line></time-line>
 
-        <div class="avatar-manage__filters">
-          <div class="avatar-manage__search">
-            <div class="p-inputgroup">
-                <input type='text' name="search" [(ngModel)]="keyword" pInputText placeholder="Search Avatars With Name Or Id">
-                <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-warn" (click)="search()"></button>
-            </div>
-          </div>
-          <div class="avatar-manage__sorts">
-            <span>SORT BY:</span>
-            <p-dropdown [options]="sortOptions" [(ngModel)]="selectedSortOption" optionLabel="name" (onChange)="populate()"></p-dropdown>
-          </div>
-        </div>
-      </div>
-      <div class="avatar-list">
-        <div class="avatar-cards">
-          <humanoid-card *ngFor="let humanoidCard of humanoidCards" [humanoidCard]="humanoidCard" (onDressup)="dressup($event)"></humanoid-card>
-        </div>
-        <p-paginator
-          [rows]="pageSize"
-          [totalRecords]="total"
-          (onPageChange)="loadPage($event)"
-        ></p-paginator>
-      </div>
-    </div>
+    <animation-layer-controller></animation-layer-controller>
+    <animation-layer-setting></animation-layer-setting>
+    <element-attributes [element]="element"></element-attributes>
+    <character-action-setting
+      [usedBy]="'elementEditor'"
+    ></character-action-setting>
   </div>
 </ng-container>
+<ng-template #loading>
+  Loading...
+</ng-template>

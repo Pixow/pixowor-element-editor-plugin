@@ -16,19 +16,29 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
-
+import { TooltipModule } from 'primeng/tooltip';
+import { SliderModule } from 'primeng/slider';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
-import { HumanoidCardComponent } from 'src/components/humanoid-card/humanoid-card.component';
-import { DateAgoPipe } from 'src/pipes/date-ago.pipe';
-import { AvatarPreviewComponent } from 'src/components/avatar-preview/avatar-preview.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HumanoidAssetsUploadComponent } from 'src/components/humanoid-assets-upload/humanoid-assets-upload.component';
-import { HumanoidSlotComponent } from 'src/components/humanoid-slot/humanoid-slot.component';
 import { CommonModule } from '@angular/common';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { ElementSettingsComponent } from 'src/components/element-settings/element-settings.component';
+import { PanelBodyComponent, PanelComponent } from 'src/components/panel/panel.component';
+import { AnimationLayerControllerComponent } from 'src/components/animation-layer-controller/animation-layer-controller.component';
+import { AnimationLayerSettingComponent } from 'src/components/animation-layer-setting/animation-layer-setting.component';
+import { AnimationListComponent } from 'src/components/animation-list/animation-list.component';
+import { AssetsListComponent } from 'src/components/assets-list/assets-list.component';
+import { CharacterActionSettingComponent } from 'src/components/character-action-setting/character-action-setting.component';
+import { ElementAttributesComponent } from 'src/components/element-attributes/element-attributes.component';
+import { ElementEditorCanvasComponent } from 'src/components/element-editor-canvas/element-editor-canvas.component';
+import { TimeLineComponent } from 'src/components/time-line/time-line.component';
+import { FrameComponent } from 'src/components/frame/frame.component';
+import { ElementEditorService } from './element-editor.service';
+import { SmallCrossComponent } from 'src/components/small-cross.component';
+import { AddAnimationComponent } from 'src/components/add-animation.component';
 
 function initPixoworCore(): PixoworCore {
   storage.setDataPath(path.join(remote.app.getPath('userData'), 'runtime'));
@@ -43,11 +53,20 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    HumanoidCardComponent,
-    DateAgoPipe,
-    AvatarPreviewComponent,
-    HumanoidAssetsUploadComponent,
-    HumanoidSlotComponent,
+    PanelComponent,
+    PanelBodyComponent,
+    ElementSettingsComponent,
+    AnimationLayerControllerComponent,
+    AnimationLayerSettingComponent,
+    AnimationListComponent,
+    AssetsListComponent,
+    CharacterActionSettingComponent,
+    ElementAttributesComponent,
+    ElementEditorCanvasComponent,
+    TimeLineComponent,
+    FrameComponent,
+    SmallCrossComponent,
+    AddAnimationComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +81,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PanelMenuModule,
     InputTextModule,
     ToastModule,
+    TooltipModule,
+    SliderModule,
     TranslateModule.forRoot({
       useDefaultLang: true,
       loader: {
@@ -75,8 +96,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   ],
   providers: [
     AppService,
+    ElementEditorService,
     { provide: PixoworCore, useFactory: initPixoworCore },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [AddAnimationComponent]
 })
 export class AppModule {}

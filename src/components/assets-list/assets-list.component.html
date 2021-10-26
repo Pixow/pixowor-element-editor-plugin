@@ -1,0 +1,39 @@
+<div class="assets-list-panel">
+  <panel title="{{ 'ASSETSLIST.TITLE' | translate }}">
+    <panel-body>
+      <ul class="assets-list">
+        <ng-container *ngFor="let image of images; let i = index">
+          <li
+            *ngIf="!image.isBlank"
+            class="asset-item"
+            [class.selected]="image === selectedImage"
+          >
+            <div class="asset-item__info">
+              <img src="{{ image.url }}" />
+              <p>
+                {{ image.name }}
+              </p>
+            </div>
+            <div>
+              <i class="pi pi-reply" (click)="onImportToFrame(image)"></i>
+              <small-cross (click)="onDeleteImage(i)"></small-cross>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+
+      <input
+        type="file"
+        accept="image/jpeg, .jpeg, image/png, .png, image/jpeg, .jpg"
+        multiple
+        #file
+        style="display: none"
+        (change)="onAddImages($event)"
+      />
+      <button class="btn" (click)="file.click()">
+        {{ "ASSETSLIST.ADD" | translate }}
+      </button>
+    </panel-body>
+  </panel>
+</div>
+<p-toast position="top-center"></p-toast>

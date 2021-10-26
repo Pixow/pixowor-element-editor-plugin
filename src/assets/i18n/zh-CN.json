@@ -1,5 +1,58 @@
 {
-  "AVATARPREVIEW": {
+  "ELEMENTEDITOR": {
+    "ELEMENTMETA": "基础设置",
+    "TYPE": "类型",
+    "NAME": "名称",
+    "DESC": "描述",
+    "LAYER": "层级",
+    "THUMB": "图标",
+    "CLICKUPLOAD": "点击上传图片",
+    "NONE": "无",
+    "LAYERCONTROL": "图层控制",
+    "ADDMOUNTPOINT": "添加挂载点",
+    "ADDANIMATIONLAYER": "添加动画图层",
+    "ADDMOUNTLAYER": "添加挂载图层",
+    "MOUNTLAYER": "挂载图层",
+    "MOUNTPOINT": "挂载点",
+    "LAYERSETTINGS": "图层设置",
+    "OFFSET": "偏移",
+    "ELEMENTPROPERTIES": "物件属性",
+    "PROPERTY": "属性",
+    "ADDPROPERTY": "添加属性",
+    "ELEMENT": "物件",
+    "TERRAIN": "地块",
+    "EFFECT": "特效"
+  },
+  "ELEMENTSETTINGS": {
+    "FLOOR": "贴地",
+    "SURFACE": "地上",
+    "HANGING": "壁挂 "
+  },
+  "ASSETSLIST": {
+    "TITLE": "资源",
+    "ADD": "添加资源"
+  },
+  "ANIMATIONLIST": {
+    "ANIMATIONSEQUENCE": "动画序列",
+    "DEFAULTANIMATION": "默认动画",
+    "SETDEFAULTANIMATION": "设置为默认动画",
+    "ADD": "添加"
+  },
+  "TIMELINE": {
+    "TITLE": "时间轴",
+    "SPEED": "动画速度",
+    "LOOP": "循环播放",
+    "ADDFRAME": "添加帧",
+    "COPYFRAME": "拷贝帧",
+    "DELETEFRAME": "删除帧",
+    "MOVELEFT": "左移帧",
+    "MOVERIGHT": "右移帧"
+  },
+  "CHARACTER_ACTION_SETTING": {
+    "TITLE": "人物动作设置",
+    "PREVIEW": "预览与物件交互的人物动作"
+  },
+  "MYAVATAR": {
     "PREVIEW": "效果预览",
     "FRONT": "正面",
     "BACK": "反面",
@@ -25,5 +78,10 @@
     "BLOWUP": "爆裂",
     "EMOTION02": "请安",
     "MINING": "挖凿"
+  },
+  "ANIMATIONDIALOG": {
+    "NAME": "名称",
+    "CANCEL": "取消",
+    "OK": "确定"
   }
 }

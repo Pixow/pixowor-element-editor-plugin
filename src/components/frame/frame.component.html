@@ -1,0 +1,9 @@
+<div class="frame" [class.selected]="selected" *ngIf="frame">
+  <img class="frame__image" src="{{ frame.img?.url }}" />
+  <!-- <small-cross (click)="handleRemoveFrame()"></small-cross> -->
+  <div class="frame__total_duration">
+    <i class="pi pi-minus" (click)="handleDecreaseFrameDuration()"></i>
+    <span>{{ frame.duration }}</span>
+    <i class="pi pi-plus" (click)="handleIncreaseFrameDuration()"></i>
+  </div>
+</div>

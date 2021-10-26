@@ -1,0 +1,26 @@
+<div class="panel" [ngStyle]="style">
+  <div class="panel-loading lds-ripple" *ngIf="isLoading">
+    <div></div>
+    <div></div>
+  </div>
+  <ng-container *ngIf="panelHeader; else defaultHeader">
+    <ng-content select="panel-header"></ng-content>
+  </ng-container>
+  <ng-template #defaultHeader>
+    <div class="panel__header">
+      <h4 class="panel__header__title">{{ title }}</h4>
+
+      <span *ngIf="showClose">
+        <i class="panel__header__closebtn pi pi-times" style="color: white"></i>
+      </span>
+    </div>
+  </ng-template>
+
+  <div class="panel__body-fixed" *ngIf="panelBodyFixed">
+    <ng-content select="panel-body-fixed"></ng-content>
+  </div>
+
+  <div class="panel__body" *ngIf="panelBody">
+    <ng-content select="panel-body"></ng-content>
+  </div>
+</div>

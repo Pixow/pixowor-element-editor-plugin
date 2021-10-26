@@ -1,60 +1,65 @@
-.avatar-manage-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-
-  .avatar-manage__sidebar {
-    width: 260px;
-
-    .sidebar-content {
-      position: fixed;
-
-      avatar-preview {
-        width: 260px;
-      }
-
-      .new-avatar-btn {
-        width: 100%;
-        height: 30px;
-        margin-top: 10px;
-      }
-    }
-
-  }
-
-  .avatar-manage__rightbar {
-    width: 1000px;
-
-    .avatar-manage__rightbar-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-
-      h3 {
-        color: #4e5c64;
-        font-size: 0.75em;
-      }
-
-      .avatar-manage__filters {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .avatar-manage__sorts > span {
-          margin-left: 10px;
-          margin-right: 6px;
-          color: #49555c;
-          font-size: 0.75em;
-        }
-      }
-    }
-  }
-}
-
-.avatar-cards {
+.element-editor {
+  padding: 5px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 190px);
-  grid-gap: 10px;
-  justify-content: space-between;
+  grid-auto-flow: column;
+  grid-gap: 2px 2px;
+  grid-template-columns: repeat(6, 212px);
+  grid-template-rows: repeat(10, 80px);
+
+  ::ng-deep element-settings {
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+
+
+  ::ng-deep assets-list {
+    grid-row-start: 4;
+    grid-row-end: 8;
+  }
+
+  ::ng-deep animation-list {
+    grid-row-start: 8;
+    grid-row-end: 11;
+  }
+
+  ::ng-deep element-editor-canvas {
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 8;
+  }
+
+  ::ng-deep time-line {
+    grid-column-start: 2;
+    grid-column-end: 7;
+    grid-row-start: 8;
+    grid-row-end: 11;
+  }
+
+  ::ng-deep animation-layer-controller {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  ::ng-deep animation-layer-setting {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  ::ng-deep element-attributes {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 6;
+  }
+
+  ::ng-deep character-action-setting {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 6;
+    grid-row-end: 8;
+  }
 }

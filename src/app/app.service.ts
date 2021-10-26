@@ -17,40 +17,22 @@ export class AppService {
 
   constructor(private pixoworCore: PixoworCore) {}
 
-  getHumanoidCards(query: QueryParams): void {
-    this.pixoworCore.pixowApi.avatar.listAvatars(query).then((res) => {
-      this.total$.next(res.total);
+  user$ = new BehaviorSubject(null);
 
-      const humanoidCards = res.list.map((record: HumanoidCard) => {
-
-        if (!record.owner) {
-          record.owner = {
-            _id: '',
-            nickname: '已注销',
-            username: '已注销',
-          };
-        }
-
-        if (record.version) {
-          record.cover = urlResolve(
-            this.pixoworCore.settings.WEB_RESOURCE_URI,
-            `avatar/${record._id}/${record.version}/thumbnail.png`
-          );
-        } else {
-          record.cover = urlResolve(
-            this.pixoworCore.settings.WEB_RESOURCE_URI,
-            `avatar/${record._id}/stand.png`
-          );
-        }
-
-        return record;
-      });
-
-      this.humanoidCards$.next(humanoidCards);
-    });
+  getUser() {
+    return this.user$.asObservable();
   }
 
-  public getQiniuToken(name: string): Promise<string> {
-    return this.pixoworCore.pixowApi.util.getQiniuToken({ name });
+  getAsyncData() {
+    setTimeout(() => {
+      this.user$.next({
+        firstName: 'Luke',
+        lastName: 'Skywalker',
+        age: 65,
+        height: 172,
+        mass: 77,
+        homeworld: 'Tatooine',
+      });
+    }, 1000);
   }
 }
