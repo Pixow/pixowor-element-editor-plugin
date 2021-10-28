@@ -39,6 +39,8 @@
     "ADD": "添加"
   },
   "TIMELINE": {
+    "PLAY": "播放",
+    "STOP": "停止",
     "TITLE": "时间轴",
     "SPEED": "动画速度",
     "LOOP": "循环播放",

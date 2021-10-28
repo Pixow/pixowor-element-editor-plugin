@@ -49,19 +49,25 @@
     &__info {
       display: flex;
       flex-direction: row;
+      align-items: center;
       img {
         width: 24px;
         height: 24px;
       }
 
       p {
-        max-width: 160px;
+        max-width: 120px;
         margin: 0;
         margin-left: 5px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
     }
 
     .close-icon {

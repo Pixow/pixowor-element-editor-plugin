@@ -14,7 +14,7 @@ export class PixoworElementEditorPlugin extends Plugin {
       label: '物件编辑器',
       type: 'subwindow',
       width: 1320,
-      height: 870
+      height: 890
     });
   }
 

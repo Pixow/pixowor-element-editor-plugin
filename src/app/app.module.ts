@@ -2,6 +2,7 @@ import * as path from 'path';
 import { remote } from 'electron';
 import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import storage from 'electron-json-storage';
@@ -83,6 +84,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ToastModule,
     TooltipModule,
     SliderModule,
+    DragDropModule,
     TranslateModule.forRoot({
       useDefaultLang: true,
       loader: {

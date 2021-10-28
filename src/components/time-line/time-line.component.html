@@ -7,39 +7,86 @@
             <i
               class="pi pi-play-animation"
               *ngIf="!playing; else stop"
-              (click)="onPlay()"
+              (click)="togglePlay()"
+              pTooltip="{{ 'TIMELINE.PLAY' | translate }}"
             ></i>
             <ng-template #stop>
-              <i class="pi pi-pause-animation" (click)="onStop()"></i>
+              <i
+                class="pi pi-pause-animation"
+                (click)="togglePlay()"
+                pTooltip="{{ 'TIMELINE.STOP' | translate }}"
+              ></i>
             </ng-template>
+
+            <i
+              class="pi pi-animation-loop"
+              [ngClass]="{ active: selectedAnimationData.loop }"
+              (click)="onToggleLoop()"
+              pTooltip="{{ 'TIMELINE.LOOP' | translate }}"
+            ></i>
+
             <select class="framerate-select" [(ngModel)]="frameRate">
-              <option *ngFor="let option of frameRateOptions" value="{{option.value}}">{{option.display}}</option>
+              <option
+                *ngFor="let option of frameRateOptions"
+                value="{{ option.value }}"
+              >
+                {{ option.display }}
+              </option>
             </select>
-            <i class="pi pi-animation-loop" [ngClass]="{'active': selectedAnimationData.loop}" (click)="toggleAnimationLoop()"  pTooltip="{{ 'TIMELINE.LOOP' | translate }}"></i>
           </div>
           <div class="time-line-tools">
-            <i class="pi pi-add-frame" (click)="onAddFrame()"  pTooltip="{{ 'TIMELINE.ADDFRAME' | translate }}"></i>
-            <i class="pi pi-copy-frame" (click)="onAddFrame()"  pTooltip="{{ 'TIMELINE.COPYFRAME' | translate }}"></i>
-            <i class="pi pi-delete-frame" (click)="onDeleteFrame()"  pTooltip="{{ 'TIMELINE.DELETEFRAME' | translate }}"></i>
-            <i class="pi pi-move-left" (click)="onMoveFrame(2)"  pTooltip="{{ 'TIMELINE.MOVELEFT' | translate }}"></i>
-            <i class="pi pi-move-right" (click)="onMoveFrame(-2)"  pTooltip="{{ 'TIMELINE.MOVERIGHT' | translate }}"></i>
+            <i
+              class="pi pi-add-frame"
+              (click)="onAddFrame()"
+              pTooltip="{{ 'TIMELINE.ADDFRAME' | translate }}"
+            ></i>
+            <i
+              class="pi pi-copy-frame"
+              [ngClass]="{ active: selectedFrameIndex >= 0 }"
+              (click)="onCopyFrame()"
+              pTooltip="{{ 'TIMELINE.COPYFRAME' | translate }}"
+            ></i>
+            <i
+              class="pi pi-delete-frame"
+              [ngClass]="{ active: selectedFrameIndex >= 0 }"
+              (click)="onDeleteFrame()"
+              pTooltip="{{ 'TIMELINE.DELETEFRAME' | translate }}"
+            ></i>
+            <i
+              class="pi pi-move-left"
+              [ngClass]="{ active: selectedFrameIndex >= 0 }"
+              (click)="onMoveFrame(2)"
+              pTooltip="{{ 'TIMELINE.MOVELEFT' | translate }}"
+            ></i>
+            <i
+              class="pi pi-move-right"
+              [ngClass]="{ active: selectedFrameIndex >= 0 }"
+              (click)="onMoveFrame(-2)"
+              pTooltip="{{ 'TIMELINE.MOVERIGHT' | translate }}"
+            ></i>
           </div>
         </div>
 
         <ul
           cdkDropList
-          class="frame-time-list scrollbar-deep-purple bordered-deep-purple thin"
+          class="
+            frame-time-list
+            scrollbar-deep-purple
+            bordered-deep-purple
+            thin
+          "
           id="frame-time"
-          (cdkDropListDropped)="onChangeFrameIndex($event)"
+          [cdkDropListData]="animationFrames"
+          cdkDropListOrientation="horizontal"
+          (cdkDropListDropped)="drop($event)"
         >
           <animation-frame
-            *ngFor="let frame of animationFrames"
+            *ngFor="let frame of animationFrames; index as i"
             [frame]="frame"
-            [selected]="frame.frameIndex === selectedFrameIndex"
-            (click)="onSelectFrame(frame)"
-            (onRemoveFrame)="onDeleteFrame(frame)"
-            (decreateFrameDuration)="onDecreaseFrameDuration(frame)"
-            (increaseFrameDuration)="onIncreaseFrameDuration(frame)"
+            [selected]="i === selectedFrameIndex"
+            (click)="onSelectFrame(i)"
+            (decreateFrameDuration)="onDecreaseFrameDuration(frame, i)"
+            (increaseFrameDuration)="onIncreaseFrameDuration(frame, i)"
             cdkDragLockAxis="x"
             cdkDrag
           >

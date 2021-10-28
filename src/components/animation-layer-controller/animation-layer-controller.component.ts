@@ -42,7 +42,7 @@ export class AnimationLayerControllerComponent implements OnInit {
           this.elementEditorService.getMixinLayers(animationData);
       });
 
-    this.elementEditorService.selectedLayer$.subscribe((layer) => {
+    this.elementEditorService.getSelectedLayer().subscribe((layer) => {
       if (layer) {
         this.selectedLayer = layer;
       }

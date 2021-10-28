@@ -14,9 +14,9 @@
                 {{ image.name }}
               </p>
             </div>
-            <div>
-              <i class="pi pi-reply" (click)="onImportToFrame(image)"></i>
-              <small-cross (click)="onDeleteImage(i)"></small-cross>
+            <div class="asset-item__actions">
+              <i class="pi pi-reply" (click)="onSelectImage(image)"></i>
+              <small-cross (click)="onDeleteImage(image)"></small-cross>
             </div>
           </li>
         </ng-container>

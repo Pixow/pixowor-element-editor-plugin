@@ -39,6 +39,7 @@
 
   p {
     margin: 0;
+    padding: 3px 0;
   }
 
   .pi {
@@ -48,9 +49,15 @@
     }
   }
 
-  .mount-point {
-    li {
-      padding-left: 10px;
+  .animationmountlayer-item {
+    p {
+      padding: 3px 0;
+    }
+
+    .mount-point {
+      li {
+        padding: 3px 0 3px 10px;
+      }
     }
   }
 }

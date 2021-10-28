@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .frame {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
   width: 120px;
   height: 120px;
   margin: 0 2px;
-  // border: 2px solid $TQ-primary-btn-active-color;
+  border: 2px solid $primary-btn-active-color;
   cursor: pointer;
 
   &.selected {
@@ -27,7 +29,7 @@
     font-size: 14px;
     width: 100%;
     height: 20px;
-    // background-color: $TQ-primary-btn-active-color;
+    background-color: $primary-btn-active-color;
     color: white;
 
     .pi {

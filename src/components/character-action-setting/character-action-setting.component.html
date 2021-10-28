@@ -1,33 +1,39 @@
 <panel title="{{ 'CHARACTER_ACTION_SETTING.TITLE' | translate }}">
   <panel-body>
-    <h4>{{ 'CHARACTER_ACTION_SETTING.PREVIEW' | translate }}</h4>
-
-    <select [(ngModel)]="curAction" (change)="setAction($event)">
-      <option value="idle">{{ 'MYAVATAR.IDLE' | translate }}</option>
-      <option value="walk">{{ 'MYAVATAR.WALK' | translate }}</option>
-      <option value="run">{{ 'MYAVATAR.RUN' | translate }}</option>
-      <option value="attack">{{ 'MYAVATAR.ATTACK' | translate }}</option>
-      <option value="jump">{{ 'MYAVATAR.JUMP' | translate }}</option>
-      <option value="injured">{{ 'MYAVATAR.INJURED' | translate }}</option>
-      <option value="failed">{{ 'MYAVATAR.FALLDOWN' | translate }}</option>
-      <option value="dance01">{{ 'MYAVATAR.DANCE01' | translate }}</option>
-      <option value="dance02">{{ 'MYAVATAR.DANCE02' | translate }}</option>
-      <option value="fishing">{{ 'MYAVATAR.FISHING' | translate }}</option>
-      <option value="greet01">{{ 'MYAVATAR.GREET' | translate }}</option>
-      <option value="sit">{{ 'MYAVATAR.SIT' | translate }}</option>
-      <option value="lie">{{ 'MYAVATAR.LIE' | translate }}</option>
-      <option value="emotion01">{{ 'MYAVATAR.EMOTION01' | translate }}</option>
-      <option value="shooteridle">{{ 'MYAVATAR.SHOOTERIDLE' | translate }}</option>
-      <option value="shooterwalk">{{ 'MYAVATAR.SHOOTERWALK' | translate }}</option>
-      <option value="shooterrun">{{ 'MYAVATAR.SHOOTERRUN' | translate }}</option>
-      <option value="shoot">{{ 'MYAVATAR.SHOOT' | translate }}</option>
-      <option value="blowup">{{ 'MYAVATAR.BLOWUP' | translate }}</option>
-      <option value="emotion02">{{ 'MYAVATAR.EMOTION02' | translate }}</option>
-      <option value="mining">{{ 'MYAVATAR.MINING' | translate }}</option>
-    </select>
-    <select *ngIf="usedBy === 'elementEditor'" [(ngModel)]="curDirection" (change)="setDirection($event)">
-      <option value="">{{ 'MYAVATAR.FRONT' | translate }}</option>
-      <option value="_back">{{ 'MYAVATAR.BACK' | translate }}</option>
-    </select>
+    <div class="character-action-setting">
+      <div class="form-control">
+        <label>Action:</label>
+        <select class="action-select pi-form" [(ngModel)]="curAction" (change)="setAction($event)">
+          <option value="idle">{{ 'MYAVATAR.IDLE' | translate }}</option>
+          <option value="walk">{{ 'MYAVATAR.WALK' | translate }}</option>
+          <option value="run">{{ 'MYAVATAR.RUN' | translate }}</option>
+          <option value="attack">{{ 'MYAVATAR.ATTACK' | translate }}</option>
+          <option value="jump">{{ 'MYAVATAR.JUMP' | translate }}</option>
+          <option value="injured">{{ 'MYAVATAR.INJURED' | translate }}</option>
+          <option value="failed">{{ 'MYAVATAR.FALLDOWN' | translate }}</option>
+          <option value="dance01">{{ 'MYAVATAR.DANCE01' | translate }}</option>
+          <option value="dance02">{{ 'MYAVATAR.DANCE02' | translate }}</option>
+          <option value="fishing">{{ 'MYAVATAR.FISHING' | translate }}</option>
+          <option value="greet01">{{ 'MYAVATAR.GREET' | translate }}</option>
+          <option value="sit">{{ 'MYAVATAR.SIT' | translate }}</option>
+          <option value="lie">{{ 'MYAVATAR.LIE' | translate }}</option>
+          <option value="emotion01">{{ 'MYAVATAR.EMOTION01' | translate }}</option>
+          <option value="shooteridle">{{ 'MYAVATAR.SHOOTERIDLE' | translate }}</option>
+          <option value="shooterwalk">{{ 'MYAVATAR.SHOOTERWALK' | translate }}</option>
+          <option value="shooterrun">{{ 'MYAVATAR.SHOOTERRUN' | translate }}</option>
+          <option value="shoot">{{ 'MYAVATAR.SHOOT' | translate }}</option>
+          <option value="blowup">{{ 'MYAVATAR.BLOWUP' | translate }}</option>
+          <option value="emotion02">{{ 'MYAVATAR.EMOTION02' | translate }}</option>
+          <option value="mining">{{ 'MYAVATAR.MINING' | translate }}</option>
+        </select>
+      </div>
+      <div class="form-control">
+        <label>Direction:</label>
+        <select class="dir-select pi-form" [(ngModel)]="curDirection" (change)="setDirection($event)">
+          <option value="">{{ 'MYAVATAR.FRONT' | translate }}</option>
+          <option value="_back">{{ 'MYAVATAR.BACK' | translate }}</option>
+        </select>
+      </div>
+    </div>
   </panel-body>
 </panel>

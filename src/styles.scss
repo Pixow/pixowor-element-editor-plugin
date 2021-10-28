@@ -150,7 +150,6 @@ $button-active: #6c8cad;
   width: 6px;
 }
 
-
 .pi-add-mount-point {
   background: url("./assets/icons8-roller-skis.png") no-repeat center;
   background-size: contain;
@@ -169,11 +168,21 @@ $button-active: #6c8cad;
 .pi-move-left {
   background: url("./assets/icons8-left.png") no-repeat center;
   background-size: contain;
+
+  &.active {
+    background: url("./assets/icons8-left-active.png") no-repeat center;
+    background-size: contain;
+  }
 }
 
 .pi-move-right {
   background: url("./assets/icons8-right.png") no-repeat center;
   background-size: contain;
+
+  &.active {
+    background: url("./assets/icons8-right-active.png") no-repeat center;
+    background-size: contain;
+  }
 }
 
 .pi-add-frame {
@@ -184,34 +193,58 @@ $button-active: #6c8cad;
 .pi-copy-frame {
   background: url("./assets/icons8-copy.png") no-repeat center;
   background-size: contain;
+
+  &.active {
+    background: url("./assets/icons8-copy-active.png") no-repeat center;
+    background-size: contain;
+  }
 }
 
 .pi-frame-rate {
-   background: url("./assets/icons8-frame-rate.png") no-repeat center;
+  background: url("./assets/icons8-frame-rate.png") no-repeat center;
   background-size: contain;
 }
 
 .pi-animation-loop {
   background: url("./assets/icons8-oval-loop.png") no-repeat center;
   background-size: contain;
-}
 
-.pi-animation-loop.active {
-  background: url("./assets/icons8-oval-loop-active.png") no-repeat center;
-  background-size: contain;
+  &.active {
+    background: url("./assets/icons8-oval-loop-active.png") no-repeat center;
+    background-size: contain;
+  }
 }
 
 .pi-play-animation {
-    background: url("./assets/icons8-play.png") no-repeat center;
+  background: url("./assets/icons8-play.png") no-repeat center;
   background-size: contain;
 }
 
 .pi-pause-animation {
-    background: url("./assets/icons8-pause.png") no-repeat center;
+  background: url("./assets/icons8-pause.png") no-repeat center;
   background-size: contain;
 }
 
 .pi-delete-frame {
   background: url("./assets/icons8-delete.png") no-repeat center;
   background-size: contain;
+
+  &.active {
+    background: url("./assets/icons8-delete-active.png") no-repeat center;
+    background-size: contain;
+  }
+}
+
+.pi-form {
+  width: 84px;
+  height: 20px;
+  background: transparent;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  outline: none;
+
+  option {
+    color: #000;
+  }
 }

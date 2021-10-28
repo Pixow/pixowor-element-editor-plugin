@@ -12,3 +12,5 @@ node ./hot-dev.js
 ### TODO
 
 [ ] 使用HumanoidNode创建新的avatar文件和数据
+
+

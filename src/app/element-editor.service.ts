@@ -7,6 +7,7 @@ import {
   AnimationLayer,
   AnimationMountLayer,
   ElementNode,
+  IFrame,
   IImage,
 } from 'game-capsule';
 import { Capsule } from 'game-capsule';
@@ -14,6 +15,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { ElementEditorCanvas } from '@PixelPai/game-core';
 import { nativeImage } from 'electron';
+import * as fsa from 'fs-extra';
 
 export const BLANK_BASE64 =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=';
@@ -22,22 +24,19 @@ export const BLANK_BASE64 =
   providedIn: 'root',
 })
 export class ElementEditorService {
-  images$ = new BehaviorSubject<IImage[]>([]);
-  private capsule$ = new BehaviorSubject<Capsule>(undefined);
+  private images$ = new BehaviorSubject<IImage[]>([]);
+  public capsule: Capsule;
   private element$ = new BehaviorSubject<ElementNode>(undefined);
-  selectedLayer$ = new BehaviorSubject<AnimationLayer | AnimationMountLayer>(
+  private selectedLayer$ = new BehaviorSubject<
+    AnimationLayer | AnimationMountLayer
+  >(undefined);
+  private selectedAnimationData$ = new BehaviorSubject<AnimationDataNode>(
     undefined
   );
-  selectedAnimationData$ = new BehaviorSubject<AnimationDataNode>(undefined);
-  elementEditorCanvas: ElementEditorCanvas = undefined;
+  public elementEditorCanvas: ElementEditorCanvas = undefined;
+  private selectedImage$ = new BehaviorSubject<IImage>(undefined);
+  private elementDir: string;
 
-  updateCapsule(capsule: Capsule) {
-    this.capsule$.next(capsule);
-  }
-
-  public get capsule() {
-    return this.capsule$.getValue();
-  }
 
   updateElement(element: ElementNode) {
     this.element$.next(element);
@@ -63,11 +62,11 @@ export class ElementEditorService {
     return this.selectedAnimationData$.getValue();
   }
 
-  updateSelectedAnimationLayer(animationLayer: AnimationLayer) {
+  updateSelectedLayer(animationLayer: AnimationLayer | AnimationMountLayer) {
     this.selectedLayer$.next(animationLayer);
   }
 
-  getSelectedAnimationLayer() {
+  getSelectedLayer() {
     return this.selectedLayer$.asObservable();
   }
 
@@ -75,26 +74,44 @@ export class ElementEditorService {
     return this.selectedLayer$.getValue();
   }
 
+  public getImages() {
+    return this.images$.asObservable();
+  }
+
   public get images() {
     return this.images$.getValue();
   }
 
+  public getSelectedImage() {
+    return this.selectedImage$.asObservable();
+  }
+
+  public get selectedImage() {
+    return this.selectedImage$.getValue();
+  }
+
   constructor(private pixoworCore: PixoworCore) {}
+
+
 
   public initElement() {
     const { USER_DATA_PATH } = this.pixoworCore.settings;
 
-    const capsule = new Capsule();
+    this.elementDir = path.join(
+      USER_DATA_PATH,
+      'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1'
+    );
+
+    this.capsule = new Capsule();
 
     fs.readFile(
       path.join(
         USER_DATA_PATH,
-        'packages/elements/601fd448765b50025e3fbd25/1/601fd448765b50025e3fbd25.pi'
+        'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1/601fd448765b50025e3fbd25.pi'
       ),
       (error, data) => {
-        capsule.deserialize(new Uint8Array(data));
-        console.log('Capsule: ', capsule);
-        const element = capsule.root.children[0] as ElementNode;
+        this.capsule.deserialize(new Uint8Array(data));
+        const element = this.capsule.root.children[0] as ElementNode;
         const defaultAniName = element.animations.defaultAnimation;
         const defaultAniData = element.animations.animationData.find(
           (aniData) => aniData.name === defaultAniName
@@ -103,8 +120,7 @@ export class ElementEditorService {
           defaultAniData.layerDict.values()
         )[0];
         this.updateSelectedAnimationData(defaultAniData);
-        this.updateSelectedAnimationLayer(defaultAniLayer);
-        this.updateCapsule(capsule);
+        this.updateSelectedLayer(defaultAniLayer);
         this.updateElement(element);
       }
     );
@@ -112,6 +128,10 @@ export class ElementEditorService {
 
   setElementImages(images: IImage[]) {
     this.images$.next(images);
+  }
+
+  selectImage(image: IImage) {
+    this.selectedImage$.next(image);
   }
 
   addImages(imgs: IImage[]) {
@@ -130,10 +150,69 @@ export class ElementEditorService {
 
       element.animations.display.textureBuffer = imageBuffer;
       element.animations.display.dataJSON = json;
+
       this.elementEditorCanvas.reloadDisplayNode();
     });
 
     this.images$.next(images);
+  }
+
+  removeImage(image: IImage) {
+    const images = this.images;
+    const index = images.findIndex((img) => img.key === image.key);
+    images.splice(index, 1);
+
+    this.elementEditorCanvas.generateSpriteSheet(images).then((ret) => {
+      const { url, json } = ret;
+      const imageBuffer = this.imgDataStringToBuffer(ret.url);
+
+      this.saveElementDisplay(imageBuffer, json)
+        .then(() => {
+
+          this.elementEditorCanvas.reloadDisplayNode();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
+    this.images$.next(images);
+  }
+
+  saveElementDisplay(textureBuffer: any, dataJSON: string): Promise<any> {
+    const task = [];
+
+    this.element.animations.display.textureBuffer = textureBuffer;
+    this.element.animations.display.dataJSON = dataJSON;
+
+    this.element.animations.display.texturePath = path.posix.join(
+      this.elementDir,
+      `${this.element.sn}.png`
+    );
+    this.element.animations.display.dataPath = path.posix.join(
+      this.elementDir,
+      `${this.element.sn}.json`
+    );
+    const componentTexturePath = path.posix.join(
+      this.elementDir,
+      `${this.element.sn}.png`
+    );
+    const componentDataPath = path.posix.join(
+      this.elementDir,
+      `${this.element.sn}.json`
+    );
+
+    if (!fs.existsSync(componentTexturePath)) {
+      fsa.ensureFileSync(componentTexturePath);
+    }
+    if (!fs.existsSync(componentDataPath)) {
+      fsa.ensureFileSync(componentDataPath);
+    }
+
+    task.push(fsa.writeFile(componentTexturePath, Buffer.from(textureBuffer)));
+    task.push(fsa.writeFile(componentDataPath, dataJSON));
+
+    return Promise.all(task);
   }
 
   private imgDataStringToBuffer(data) {
@@ -188,7 +267,53 @@ export class ElementEditorService {
     this.updateSelectedAnimationData(animationData);
   }
 
-  public selectFrame() {}
+  public addFrame(frame: IFrame, index: number) {
+    const animationData = this.selectedAnimationData;
+    const animationLayer = this.selectedLayer;
+    Array.from(animationData.layerDict.values()).forEach((layer: any) => {
+      layer.addFrameAt(frame.name, index);
+    });
+
+    animationData.addDuration(index);
+
+    if (animationData.mountLayer) {
+      animationData.mountLayer.addFrameVisible(index);
+    }
+
+    this.updateSelectedAnimationData(animationData);
+    this.updateSelectedLayer(animationData.layerDict.get(animationLayer.id));
+  }
+
+  public removeFrame(frameIndex: number) {
+    const animationData = this.selectedAnimationData;
+    const animationLayer = this.selectedLayer;
+    for (const layer of Array.from(animationData.layerDict.values())) {
+      (layer as AnimationLayer).removeFrame(frameIndex);
+    }
+    animationData.deleteDuration(frameIndex);
+    this.updateSelectedAnimationData(animationData);
+    this.updateSelectedLayer(animationData.layerDict.get(animationLayer.id));
+  }
+
+  public moveFrame(fromIndex: number, toIndex: number) {
+    const animationData = this.selectedAnimationData;
+    const animationLayer = this.selectedLayer;
+    for (const layer of Array.from(animationData.layerDict.values())) {
+      (layer as AnimationLayer).moveFrame(fromIndex, toIndex);
+    }
+    this.updateSelectedAnimationData(animationData);
+    this.updateSelectedLayer(animationData.layerDict.get(animationLayer.id));
+  }
+
+  public updateFrame(frame: IFrame, frameIndex: number) {
+    const animationData = this.selectedAnimationData;
+    if (this.selectedLayer instanceof AnimationLayer) {
+      this.selectedLayer.updateFrame(frame, frameIndex);
+    }
+
+    this.updateSelectedAnimationData(animationData);
+    this.updateSelectedLayer(this.selectedLayer);
+  }
 
   public selectLayer(layer: AnimationLayer | AnimationMountLayer) {
     this.selectedLayer$.next(layer);
@@ -317,4 +442,13 @@ export class ElementEditorService {
     animationData.mountLayer.deleteMountPoint(index);
     this.updateSelectedAnimationData(animationData);
   }
+
+  public togglePlay(playStatus: boolean) {
+    if (playStatus) {
+      this.elementEditorCanvas.playAnimation();
+    } else {
+      this.elementEditorCanvas.stopAnimation();
+    }
+  }
 }
+

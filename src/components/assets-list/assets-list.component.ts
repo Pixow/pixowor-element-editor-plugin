@@ -20,13 +20,15 @@ export class AssetsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.elementEditorService.images$.subscribe((images: IImage[]) => {
+    this.elementEditorService.getImages().subscribe((images: IImage[]) => {
       this.images = images;
       this.cd.detectChanges();
     });
   }
 
-  onImportToFrame(image: IImage) {}
+  onSelectImage(image: IImage) {
+    this.elementEditorService.selectImage(image);
+  }
 
   onAddImages(event) {
     const task = [];
@@ -69,5 +71,7 @@ export class AssetsListComponent implements OnInit {
     });
   }
 
-  onDeleteImage(index: number) {}
+  onDeleteImage(image: IImage) {
+    this.elementEditorService.removeImage(image);
+  }
 }

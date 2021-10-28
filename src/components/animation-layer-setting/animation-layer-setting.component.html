@@ -1,14 +1,24 @@
 <panel title="{{ 'ELEMENTEDITOR.LAYERSETTINGS' | translate }}">
-    <panel-body>
-        <div id="offsetLoc" *ngIf="selectLayer && selectLayer.offsetLoc">
-            <span>
-                <span>{{ 'ELEMENTEDITOR.OFFSET' | translate }}: </span>
-                <input class="offset-input" id="float-input" width="30px" type="number" v-text="0"
-                    (blur)="updateOffset()" size="14" [(ngModel)]="selectLayer.offsetLoc.x" pInputText>
+  <panel-body>
+    <div class="animation-layer-setting" *ngIf="selectedLayer && selectedLayer.offsetLoc">
+      <span>{{ "ELEMENTEDITOR.OFFSET" | translate }}: </span>
+      <input
+        class="offset-input pi-form"
+        type="number"
+        v-text="0"
+        (change)="updateOffset()"
+        size="14"
+        [(ngModel)]="selectedLayer.offsetLoc.x"
+      />
 
-                <input class="offset-input" id="float-input" width="30px" type="number" v-text="0"
-                    (blur)="updateOffset()" size="14" [(ngModel)]="selectLayer.offsetLoc.y" pInputText>
-            </span>
-        </div>
-    </panel-body>
+      <input
+        class="offset-input pi-form"
+        type="number"
+        v-text="0"
+        (change)="updateOffset()"
+        size="14"
+        [(ngModel)]="selectedLayer.offsetLoc.y"
+      />
+    </div>
+  </panel-body>
 </panel>

@@ -15,16 +15,27 @@
       }
 
       &__play-buttons {
+        display: flex;
+        align-items: center;
         margin: 0 10px;
 
         .pi {
           width: 20px;
           height: 20px;
+          cursor: pointer;
+          margin-right: 3px;
         }
 
         .framerate-select {
-          width: 100px;
-          height: 30px;
+          width: 84px;
+          height: 20px;
+          background: transparent;
+          color: white;
+          border-radius: 3px;
+
+          option {
+            color: #000;
+          }
         }
       }
     }
@@ -32,10 +43,11 @@
 }
 
 .frame-time-list {
-  height: 128px;
-  margin-bottom: 0;
+  height: 130px;
+  padding: 10px 10px 0 10px;
   list-style-type: none;
   display: flex;
+  flex-direction: row;
   overflow-x: auto;
 
   animation-frame {
@@ -72,6 +84,7 @@
     width: 20px;
     height: 20px;
     margin-right: 3px;
+    cursor: pointer;
   }
 
 }

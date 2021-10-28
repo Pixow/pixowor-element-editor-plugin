@@ -1,3 +1,21 @@
-select {
-  color: #000;
+.character-action-setting {
+  padding: 5px 3px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  
+  label {
+    width: 40%; 
+  }
+}
+
+.action-select {
+  width: 120px;
+}
+
+.dir-select {
+  width: 60px;
 }

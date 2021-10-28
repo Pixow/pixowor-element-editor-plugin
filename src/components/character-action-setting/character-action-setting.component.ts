@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ElementEditorService } from 'src/app/element-editor.service';
 
 @Component({
   selector: 'character-action-setting',
@@ -6,34 +7,24 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./character-action-setting.component.scss'],
 })
 export class CharacterActionSettingComponent implements OnInit {
-  @Input() usedBy: string;
-
-  @Input() avatarCanvas: any;
-
   public curAction = 'idle';
-  private curDirection = '';
+  public curDirection = '';
 
-  constructor() {}
+  constructor(private elementEditorService: ElementEditorService) {}
 
   ngOnInit(): void {}
 
-  public clearState() {
-    this.curAction = 'idle';
-    this.curDirection = '';
-  }
-
   public setAction(event) {
-    const value = event.target.value;
-    this.curAction = value;
-    this.updateCharacterAction();
-  }
-  public setDirection(event) {
-    const value = event.target.value;
-    this.curDirection = value;
-    this.updateCharacterAction();
+    const { value } = event.target;
+    this.elementEditorService.elementEditorCanvas.toggleMountPointAnimationPlay(
+      `${value}${this.curDirection}`
+    );
   }
 
-  private updateCharacterAction() {
-    const value: string = this.curAction + this.curDirection;
+  public setDirection(event) {
+    const { value } = event.target;
+    this.elementEditorService.elementEditorCanvas.toggleMountPointAnimationPlay(
+      `${this.curAction}${value}`
+    );
   }
 }

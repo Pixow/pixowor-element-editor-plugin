@@ -14,7 +14,9 @@ export class FrameComponent implements OnInit {
   @Output() increaseFrameDuration: EventEmitter<any> = new EventEmitter<any>();
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('frame: ', this.frame);
+  }
 
   handleRemoveFrame() {
     this.onRemoveFrame.emit();

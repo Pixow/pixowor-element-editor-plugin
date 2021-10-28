@@ -42,6 +42,8 @@
     "ADD": "Add"
   },
   "TIMELINE": {
+    "PLAY": "Play",
+    "STOP": "Stop",
     "TITLE": "Timeline",
     "SPEED": "Animation frequency",
     "LOOP": "Play Loop",
