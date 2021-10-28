@@ -21,7 +21,11 @@
     "ADDPROPERTY": "添加属性",
     "ELEMENT": "物件",
     "TERRAIN": "地块",
-    "EFFECT": "特效"
+    "EFFECT": "特效",
+    "SELECT": "选择",
+    "COLLISION": "绘制碰撞区域",
+    "WALKABLE": "绘制可行走区域",
+    "INTERACTIVE": "绘制交互区域"
   },
   "ELEMENTSETTINGS": {
     "FLOOR": "贴地",

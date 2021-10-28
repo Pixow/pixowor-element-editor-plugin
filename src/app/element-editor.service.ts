@@ -13,7 +13,7 @@ import {
 import { Capsule } from 'game-capsule';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ElementEditorCanvas } from '@PixelPai/game-core';
+import { ElementEditorBrushType, ElementEditorCanvas } from '@PixelPai/game-core';
 import { nativeImage } from 'electron';
 import * as fsa from 'fs-extra';
 
@@ -27,6 +27,7 @@ export class ElementEditorService {
   private images$ = new BehaviorSubject<IImage[]>([]);
   public capsule: Capsule;
   private element$ = new BehaviorSubject<ElementNode>(undefined);
+  public element: ElementNode;
   private selectedLayer$ = new BehaviorSubject<
     AnimationLayer | AnimationMountLayer
   >(undefined);
@@ -37,17 +38,12 @@ export class ElementEditorService {
   private selectedImage$ = new BehaviorSubject<IImage>(undefined);
   private elementDir: string;
 
-
   updateElement(element: ElementNode) {
     this.element$.next(element);
   }
 
   getElement(): Observable<ElementNode> {
     return this.element$.asObservable();
-  }
-
-  public get element() {
-    return this.element$.getValue();
   }
 
   updateSelectedAnimationData(animationData: AnimationDataNode) {
@@ -92,38 +88,43 @@ export class ElementEditorService {
 
   constructor(private pixoworCore: PixoworCore) {}
 
-
-
-  public initElement() {
+  public initElement(): Promise<ElementNode> {
     const { USER_DATA_PATH } = this.pixoworCore.settings;
 
-    this.elementDir = path.join(
-      USER_DATA_PATH,
-      'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1'
-    );
+    this.elementDir =
+      'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1';
 
     this.capsule = new Capsule();
 
-    fs.readFile(
-      path.join(
-        USER_DATA_PATH,
-        'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1/601fd448765b50025e3fbd25.pi'
-      ),
-      (error, data) => {
-        this.capsule.deserialize(new Uint8Array(data));
-        const element = this.capsule.root.children[0] as ElementNode;
-        const defaultAniName = element.animations.defaultAnimation;
-        const defaultAniData = element.animations.animationData.find(
-          (aniData) => aniData.name === defaultAniName
-        );
-        const defaultAniLayer = Array.from(
-          defaultAniData.layerDict.values()
-        )[0];
-        this.updateSelectedAnimationData(defaultAniData);
-        this.updateSelectedLayer(defaultAniLayer);
-        this.updateElement(element);
-      }
-    );
+    return new Promise((resolve, reject) => {
+      fs.readFile(
+        path.join(
+          USER_DATA_PATH,
+          'packages/elements/mjxmjx/ElementNode/601fd448765b50025e3fbd25/1/601fd448765b50025e3fbd25.pi'
+        ),
+        (error, data) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          this.capsule.deserialize(new Uint8Array(data));
+          const element = this.capsule.root.children[0] as ElementNode;
+          const defaultAniName = element.animations.defaultAnimation;
+          const defaultAniData = element.animations.animationData.find(
+            (aniData) => aniData.name === defaultAniName
+          );
+          const defaultAniLayer = Array.from(
+            defaultAniData.layerDict.values()
+          )[0];
+          this.updateSelectedAnimationData(defaultAniData);
+          this.updateSelectedLayer(defaultAniLayer);
+          this.updateElement(element);
+          this.element = element;
+          resolve(element);
+        }
+      );
+    });
   }
 
   setElementImages(images: IImage[]) {
@@ -132,6 +133,10 @@ export class ElementEditorService {
 
   selectImage(image: IImage) {
     this.selectedImage$.next(image);
+  }
+
+  public changeBrushType(type: ElementEditorBrushType) {
+    this.elementEditorCanvas.changeBrush(type);
   }
 
   addImages(imgs: IImage[]) {
@@ -146,12 +151,13 @@ export class ElementEditorService {
       const { url, json } = ret;
       const imageBuffer = this.imgDataStringToBuffer(url);
 
-      const element = this.element$.getValue();
-
-      element.animations.display.textureBuffer = imageBuffer;
-      element.animations.display.dataJSON = json;
-
-      this.elementEditorCanvas.reloadDisplayNode();
+      this.saveElementDisplay(imageBuffer, json)
+        .then(() => {
+          this.elementEditorCanvas.reloadDisplayNode();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
 
     this.images$.next(images);
@@ -168,7 +174,6 @@ export class ElementEditorService {
 
       this.saveElementDisplay(imageBuffer, json)
         .then(() => {
-
           this.elementEditorCanvas.reloadDisplayNode();
         })
         .catch((err) => {
@@ -180,6 +185,7 @@ export class ElementEditorService {
   }
 
   saveElementDisplay(textureBuffer: any, dataJSON: string): Promise<any> {
+    const { USER_DATA_PATH } = this.pixoworCore.settings;
     const task = [];
 
     this.element.animations.display.textureBuffer = textureBuffer;
@@ -194,10 +200,12 @@ export class ElementEditorService {
       `${this.element.sn}.json`
     );
     const componentTexturePath = path.posix.join(
+      USER_DATA_PATH,
       this.elementDir,
       `${this.element.sn}.png`
     );
     const componentDataPath = path.posix.join(
+      USER_DATA_PATH,
       this.elementDir,
       `${this.element.sn}.json`
     );
@@ -267,6 +275,10 @@ export class ElementEditorService {
     this.updateSelectedAnimationData(animationData);
   }
 
+  public showFrame(frameIndex: number) {
+    this.elementEditorCanvas.selectFrame(frameIndex);
+  }
+
   public addFrame(frame: IFrame, index: number) {
     const animationData = this.selectedAnimationData;
     const animationLayer = this.selectedLayer;
@@ -313,6 +325,13 @@ export class ElementEditorService {
 
     this.updateSelectedAnimationData(animationData);
     this.updateSelectedLayer(this.selectedLayer);
+  }
+
+  public updateFrameRate(value: number) {
+    const animationData = this.selectedAnimationData;
+    animationData.frameRate = value;
+
+    this.updateSelectedAnimationData(animationData);
   }
 
   public selectLayer(layer: AnimationLayer | AnimationMountLayer) {
@@ -451,4 +470,3 @@ export class ElementEditorService {
     }
   }
 }
-

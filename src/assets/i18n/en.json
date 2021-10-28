@@ -24,7 +24,11 @@
     "ADDPROPERTY": "Add Property",
     "ELEMENT": "Element",
     "TERRAIN": "Terrain",
-    "EFFECT": "Effect"
+    "EFFECT": "Effect",
+    "SELECT": "Select",
+    "COLLISION": "Draw Collision Area",
+    "WALKABLE": "Draw Walkable Area",
+    "INTERACTIVE": "Draw Interactive Area"
   },
   "ELEMENTSETTINGS": {
     "FLOOR": "Floor",

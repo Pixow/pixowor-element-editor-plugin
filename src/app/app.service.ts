@@ -22,17 +22,4 @@ export class AppService {
   getUser() {
     return this.user$.asObservable();
   }
-
-  getAsyncData() {
-    setTimeout(() => {
-      this.user$.next({
-        firstName: 'Luke',
-        lastName: 'Skywalker',
-        age: 65,
-        height: 172,
-        mass: 77,
-        homeworld: 'Tatooine',
-      });
-    }, 1000);
-  }
 }

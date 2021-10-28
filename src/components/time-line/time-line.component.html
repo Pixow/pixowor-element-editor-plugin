@@ -25,7 +25,7 @@
               pTooltip="{{ 'TIMELINE.LOOP' | translate }}"
             ></i>
 
-            <select class="framerate-select" [(ngModel)]="frameRate">
+            <select class="framerate-select" [(ngModel)]="frameRate" (change)="onChangeFrameRate($event)">
               <option
                 *ngFor="let option of frameRateOptions"
                 value="{{ option.value }}"

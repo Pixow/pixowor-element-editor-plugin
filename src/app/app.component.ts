@@ -16,7 +16,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { AddAnimationComponent } from 'src/components/add-animation.component';
 import { ElementSettingsComponent } from 'src/components/element-settings/element-settings.component';
-import { AppService } from './app.service';
 import { ElementEditorService } from './element-editor.service';
 
 interface SortOption {
@@ -35,10 +34,11 @@ export class AppComponent implements OnInit {
 
   element$: Observable<ElementNode>;
 
+  element: ElementNode;
+
   constructor(
     private translate: TranslateService,
     public elementEditorService: ElementEditorService,
-    private appService: AppService,
     private cd: ChangeDetectorRef,
     private dialogService: DialogService,
     @Inject(PixoworCore) private pixoworCore: PixoworCore
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
       this.loadI18nSuccess = true;
     });
 
-    this.element$ = this.elementEditorService.getElement();
+    // this.element$ = this.elementEditorService.getElement();
   }
 
   ngOnInit(): void {
@@ -61,9 +61,11 @@ export class AppComponent implements OnInit {
     //   this.element = element;
     //   this.cd.detectChanges();
     // });
-    this.elementEditorService.initElement();
+    this.elementEditorService.initElement().then((element) => {
+      this.element = element;
 
-    this.appService.getAsyncData();
+      this.cd.detectChanges();
+    });
   }
 
   open() {

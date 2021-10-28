@@ -15,3 +15,27 @@
 .dropzone:-moz-drag-over {
   border: 1px solid black;
 }
+
+.element-editor-tools {
+  display: flex;
+  width: 180px;
+  justify-content: space-between;
+  padding: 5px;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  .pi {
+    width: 30px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.active, &:hover {
+      border-color: #fff;
+    }
+  }
+}

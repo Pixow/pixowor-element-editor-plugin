@@ -1,4 +1,4 @@
-<ng-container *ngIf="element$ | async as element; else loading">
+<ng-container *ngIf="element; else loading">
   <div class="element-editor">
     <element-settings [element]="element"></element-settings>
     <assets-list></assets-list>

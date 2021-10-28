@@ -184,6 +184,7 @@ export class TimeLineComponent implements OnInit {
 
   public onSelectFrame(frameIndex: number) {
     this.selectedFrameIndex = frameIndex;
+    this.elementEditorService.showFrame(frameIndex);
   }
 
   public onDecreaseFrameDuration(frame: IFrame, frameIndex: number) {
@@ -197,6 +198,16 @@ export class TimeLineComponent implements OnInit {
   public onIncreaseFrameDuration(frame, frameIndex: number) {
     frame.duration = (frame.duration * 1000 + 0.1 * 1000) / 1000;
     this.elementEditorService.updateFrame(frame, frameIndex);
+  }
+
+  public onChangeFrameRate(event) {
+    const {value} = event.target;
+
+    this.elementEditorService.updateFrameRate(value);
+
+    for (const frame of this.animationFrames) {
+      frame.duration = 1 / value;
+    }
   }
 
   public drop(event: CdkDragDrop<string[]>) {

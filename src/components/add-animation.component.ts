@@ -46,8 +46,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
       .add-animation-footer button {
         margin-left: 8px;
       }
-  
-    `
+    `,
   ],
 })
 export class AddAnimationComponent {

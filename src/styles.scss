@@ -165,6 +165,26 @@ $button-active: #6c8cad;
   background-size: contain;
 }
 
+.pi-select {
+  background: url("./assets/icons8-selection-64.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-collision {
+  background: url("./assets/collision.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-walkable {
+  background: url("./assets/walking.png") no-repeat center;
+  background-size: contain;
+}
+
+.pi-interactive {
+  background: url("./assets/interaction.png") no-repeat center;
+  background-size: contain;
+}
+
 .pi-move-left {
   background: url("./assets/icons8-left.png") no-repeat center;
   background-size: contain;

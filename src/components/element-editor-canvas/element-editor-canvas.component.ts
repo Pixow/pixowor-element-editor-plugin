@@ -39,6 +39,8 @@ export class ElementEditorCanvasComponent
 
   private elementEditorCanvas: ElementEditorCanvas;
 
+  public activeTool: ElementEditorBrushType = ElementEditorBrushType.Drag;
+
   constructor(
     private elementEditorService: ElementEditorService,
     private pixoworCore: PixoworCore,
@@ -77,8 +79,8 @@ export class ElementEditorCanvasComponent
         width: elementEditorContainer.clientWidth,
         height: elementEditorContainer.clientHeight,
         parent: 'element-editor-canvas',
-        node: this.elementEditorService.capsule.root.children[0],
-        LOCAL_HOME_PATH: 'file://' + USER_DATA_PATH + '/packages/elements',
+        node: this.elementEditorService.element,
+        LOCAL_HOME_PATH: 'file://' + USER_DATA_PATH,
         osd: WEB_RESOURCE_URI + '/',
         game_created: undefined,
       }) as ElementEditorCanvas);
@@ -121,6 +123,11 @@ export class ElementEditorCanvasComponent
         }
       }
     );
+  }
+
+  public changeBrush(type: ElementEditorBrushType) {
+    this.activeTool = type;
+    this.elementEditorService.changeBrushType(type);
   }
 
   ngOnDestroy() {}

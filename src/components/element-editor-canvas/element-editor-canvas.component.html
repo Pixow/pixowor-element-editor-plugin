@@ -1,2 +1,29 @@
-<div #elementEditorContainer id="element-editor-canvas"></div>
+<div #elementEditorContainer id="element-editor-canvas">
+  <div class="element-editor-tools">
+    <i
+      class="pi pi-select"
+      [ngClass]="{ active: activeTool === 0 }"
+      (click)="changeBrush(0)"
+      pTooltip="{{ 'ELEMENTEDITOR.LOOP' | translate }}"
+    ></i>
+    <i
+      class="pi pi-collision"
+      [ngClass]="{ active: activeTool === 1 }"
+      (click)="changeBrush(1)"
+      pTooltip="{{ 'ELEMENTEDITOR.LOOP' | translate }}"
+    ></i>
+    <i
+      class="pi pi-walkable"
+      [ngClass]="{ active: activeTool === 2 }"
+      (click)="changeBrush(2)"
+      pTooltip="{{ 'ELEMENTEDITOR.LOOP' | translate }}"
+    ></i>
+    <i
+      class="pi pi-interactive"
+      [ngClass]="{ active: activeTool === 3 }"
+      (click)="changeBrush(3)"
+      pTooltip="{{ 'ELEMENTEDITOR.LOOP' | translate }}"
+    ></i>
+  </div>
+</div>
 <p-toast position="top-center"></p-toast>
