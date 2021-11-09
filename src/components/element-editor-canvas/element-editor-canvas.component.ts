@@ -80,9 +80,8 @@ export class ElementEditorCanvasComponent
         height: elementEditorContainer.clientHeight,
         parent: 'element-editor-canvas',
         node: this.elementEditorService.element,
-        LOCAL_HOME_PATH: 'file://' + USER_DATA_PATH,
-        osd: WEB_RESOURCE_URI + '/',
-        game_created: undefined,
+        localPath: 'file://' + USER_DATA_PATH,
+        osdPath: WEB_RESOURCE_URI + '/',
       }) as ElementEditorCanvas);
 
     this.elementEditorCanvas.on(
